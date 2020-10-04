@@ -118,10 +118,11 @@ AlphaTileBox(
 ```
 
 ## Spinner
+[![Download](https://api.bintray.com/packages/devmagician/maven/orchestra-spinner/images/download.svg) ](https://bintray.com/devmagician/maven/orchestra-spinner/_latestVersion) <br>
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:orchestra-spinner:1.0.0"
+    implementation "com.github.skydoves:orchestra-spinner:$version"
 }
 ```
 
