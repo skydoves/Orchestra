@@ -78,9 +78,7 @@ dependencies {
 ```kotlin
 val (selectedColor, setSelectedColor) = remember { mutableStateOf(ColorEnvelope(0)) }
 ColorPicker(
-    modifier = modifier.constrainAs(colorPicker) {
-      centerHorizontallyTo(parent)
-    }.fillMaxWidth().height(400.dp),
+    modifier = Modifier.fillMaxWidth().height(400.dp),
     onColorListener = { envelope, _ ->
       setSelectedColor(envelope)
     },
