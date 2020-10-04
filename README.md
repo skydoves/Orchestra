@@ -16,8 +16,6 @@
 <img src="https://user-images.githubusercontent.com/24237865/71962685-534a6600-323d-11ea-9e1e-df1f68cb2181.gif" width="32%"/>
 </p>
 
-<img src="https://user-images.githubusercontent.com/24237865/95007576-3caa3180-064c-11eb-815b-b995f45bb18a.gif" align="right" width="32%"/>
-
 ## Balloon
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
@@ -25,6 +23,8 @@ dependencies {
     implementation "com.github.skydoves:orchestra-balloon:1.0.0"
 }
 ```
+
+<img src="https://user-images.githubusercontent.com/24237865/95007576-3caa3180-064c-11eb-815b-b995f45bb18a.gif" align="right" width="32%"/>
 
 ### Usage
 `BalloonAnchor` composable can be used in `ConstraintLayout` and it receives a constraint reference. In the below, `BalloonAnchor` references `image` composable. When clicked the `image` composable, balloon popup will be shown.
@@ -61,8 +61,6 @@ BalloonAnchor(
 )
 ```
 
-<img src="https://user-images.githubusercontent.com/24237865/95007577-416ee580-064c-11eb-92b7-ad30c5b36da0.gif" align="right" width="32%"/>
-
 ## ColorPicker
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
@@ -70,6 +68,8 @@ dependencies {
     implementation "com.github.skydoves:orchestra-colorpicker:1.0.0"
 }
 ```
+
+<img src="https://user-images.githubusercontent.com/24237865/95007577-416ee580-064c-11eb-92b7-ad30c5b36da0.gif" align="right" width="32%"/>
 
 ### Usage
 `ColorPicker` composable implements a color picker with `AlphaSlideBar` and `BrightnessSlideBar`. We can create an alpha sidebar and brightness sidebar for changing saturation and lightness by tapping on the desired color. They should be used in `children` inner composable in `ColorPicker`, and they receive a `colorPickerView` as a parameter.
@@ -103,6 +103,7 @@ ColorPicker(
     }
   )
 ```
+
 ### AlphaTileBox
 In a normal View, it can not represent ARGB colors accurately. Because a color will be mixed with the parent's background-color. For resolving it we can use `AlphaTileBox` composable. `AlphaTileBox` composable reflects ARGB colors.
 ```kotlin
@@ -116,8 +117,6 @@ AlphaTileBox(
 }
 ```
 
-<img src="https://user-images.githubusercontent.com/24237865/95007578-42a01280-064c-11eb-9081-e5567274c9ba.gif" align="right" width="32%"/>
-
 ## Spinner
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
@@ -125,6 +124,8 @@ dependencies {
     implementation "com.github.skydoves:orchestra-spinner:1.0.0"
 }
 ```
+
+<img src="https://user-images.githubusercontent.com/24237865/95007578-42a01280-064c-11eb-9081-e5567274c9ba.gif" align="right" width="32%"/>
 
 ### Usage
 `Spinner` composable implements a lightweight dropdown popup spinner. Here is an example for creating a spinner using a sting array resource. We should use the String generic type for creating a spinner when we us a string array resource.
