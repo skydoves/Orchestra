@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+@file:JvmName("Spinner")
+@file:JvmMultifileClass
+
 package com.skydoves.orchestra.spinner
 
 import android.content.Context

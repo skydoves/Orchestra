@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+@file:JvmName("ColorPicker")
+@file:JvmMultifileClass
+
 package com.skydoves.orchestra.colorpicker
 
 import android.content.Context

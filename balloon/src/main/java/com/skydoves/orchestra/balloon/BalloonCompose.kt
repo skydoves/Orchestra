@@ -15,6 +15,8 @@
  */
 
 @file:Suppress("unused")
+@file:JvmName("BalloonAnchor")
+@file:JvmMultifileClass
 
 package com.skydoves.orchestra.balloon
 
