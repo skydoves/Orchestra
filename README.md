@@ -17,6 +17,7 @@
 </p>
 
 ## Balloon
+[![Download](https://api.bintray.com/packages/devmagician/maven/orchestra-balloon/images/download.svg) ](https://bintray.com/devmagician/maven/orchestra-balloon/_latestVersion) <br>
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
@@ -62,10 +63,11 @@ BalloonAnchor(
 ```
 
 ## ColorPicker
+[![Download](https://api.bintray.com/packages/devmagician/maven/orchestra-colorpicker/images/download.svg) ](https://bintray.com/devmagician/maven/orchestra-colorpicker/_latestVersion)<br>
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:orchestra-colorpicker:1.0.0"
+    implementation "com.github.skydoves:orchestra-colorpicker:$version"
 }
 ```
 
@@ -76,9 +78,7 @@ dependencies {
 ```kotlin
 val (selectedColor, setSelectedColor) = remember { mutableStateOf(ColorEnvelope(0)) }
 ColorPicker(
-    modifier = modifier.constrainAs(colorPicker) {
-      centerHorizontallyTo(parent)
-    }.fillMaxWidth().height(400.dp),
+    modifier = Modifier.fillMaxWidth().height(400.dp),
     onColorListener = { envelope, _ ->
       setSelectedColor(envelope)
     },
@@ -118,10 +118,11 @@ AlphaTileBox(
 ```
 
 ## Spinner
+[![Download](https://api.bintray.com/packages/devmagician/maven/orchestra-spinner/images/download.svg) ](https://bintray.com/devmagician/maven/orchestra-spinner/_latestVersion) <br>
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:orchestra-spinner:1.0.0"
+    implementation "com.github.skydoves:orchestra-spinner:$version"
 }
 ```
 
