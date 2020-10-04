@@ -1,0 +1,11 @@
+<resources>
+  <string name="app_name">OrchestraDemo</string>
+
+  <string-array name="list_spinner">
+    <item>What is your favourite color?</item>
+    <item>What is your favourite food?</item>
+    <item>What is your favourite pet`s name?</item>
+    <item>What is your favourite coffee?</item>
+    <item>Why Kotlin?</item>
+  </string-array>
+</resources>

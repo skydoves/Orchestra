@@ -1,0 +1,5 @@
+rootProject.name = "OrchestraDemo"
+include ':app'
+include ':balloon'
+include ':colorpicker'
+include ':spinner'
