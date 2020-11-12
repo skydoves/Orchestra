@@ -17,8 +17,8 @@
 package com.skydoves.compose.orchestra.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Layout
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.unit.Dp
 import kotlin.math.ceil
 

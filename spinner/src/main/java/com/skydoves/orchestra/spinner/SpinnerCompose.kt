@@ -24,9 +24,9 @@ import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
 import androidx.annotation.ArrayRes
-import androidx.compose.foundation.Text
-import androidx.compose.foundation.currentTextStyle
 import androidx.compose.foundation.layout.ConstraintLayout
+import androidx.compose.material.AmbientTextStyle
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -112,7 +112,7 @@ import com.skydoves.powerspinner.createPowerSpinnerView
 fun <T> Spinner(
   text: String = "",
   modifier: Modifier = Modifier,
-  color: Color = Color.Unset,
+  color: Color = Color.Unspecified,
   fontSize: TextUnit = TextUnit.Inherit,
   fontStyle: FontStyle? = null,
   fontWeight: FontWeight? = null,
@@ -125,14 +125,14 @@ fun <T> Spinner(
   softWrap: Boolean = true,
   maxLines: Int = Int.MAX_VALUE,
   onTextLayout: (TextLayoutResult) -> Unit = {},
-  style: TextStyle = currentTextStyle(),
+  style: TextStyle = AmbientTextStyle.current,
   context: Context = ContextAmbient.current,
   lifecycleOwner: LifecycleOwner = LifecycleOwnerAmbient.current,
   showDivider: Boolean = false,
   dividerSize: Dp = 0.5.dp,
-  dividerColor: Color = Color.Unset,
+  dividerColor: Color = Color.Unspecified,
   spinnerPadding: Dp = 0.dp,
-  spinnerBackgroundColor: Color = Color.Unset,
+  spinnerBackgroundColor: Color = Color.Unspecified,
   onSpinnerItemSelected: (Int, T) -> Unit = { _, _ -> },
   onSpinnerOutsideTouched: (View, MotionEvent) -> Unit = { _, _ -> },
   dismissWhenNotifiedItemSelected: Boolean = true,
@@ -160,7 +160,7 @@ fun <T> Spinner(
     itemListRes?.let { setItems(it) } ?: setItems(itemList)
     setIsFocusable(true)
     setTextColor(
-      if (color != Color.Unset) {
+      if (color != Color.Unspecified) {
         color.toArgb()
       } else {
         style.color.toArgb()

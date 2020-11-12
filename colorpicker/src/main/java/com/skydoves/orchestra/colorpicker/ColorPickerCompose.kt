@@ -160,7 +160,7 @@ fun AlphaSlideBar(
   colorPickerView: ColorPickerView,
   @FloatRange(from = 0.0, to = 1.0) selectedPosition: Float = 1.0f,
   @DrawableRes selector: Int = R.drawable.wheel,
-  borderColor: Color = Color.Unset,
+  borderColor: Color = Color.Unspecified,
   borderSize: Dp = 0.dp,
   update: (AlphaSlideBar) -> Unit = {}
 ) {
@@ -213,7 +213,7 @@ fun BrightnessSlideBar(
   colorPickerView: ColorPickerView,
   @FloatRange(from = 0.0, to = 1.0) selectedPosition: Float = 1.0f,
   @DrawableRes selector: Int = R.drawable.wheel,
-  borderColor: Color = Color.Unset,
+  borderColor: Color = Color.Unspecified,
   borderSize: Dp = 0.dp,
   update: (BrightnessSlideBar) -> Unit = {}
 ) {

@@ -23,8 +23,8 @@ package com.skydoves.orchestra.balloon
 import android.content.Context
 import android.view.MotionEvent
 import android.view.View
+import androidx.compose.foundation.AmbientIndication
 import androidx.compose.foundation.Indication
-import androidx.compose.foundation.IndicationAmbient
 import androidx.compose.foundation.InteractionState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.ConstrainedLayoutReference
@@ -74,7 +74,7 @@ fun <T : Balloon.Factory> ConstraintLayoutScope.BalloonAnchor(
   onBalloonDismiss: () -> Unit = {},
   onBalloonInitialized: (View) -> Unit = { _ -> },
   onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
-  onClickIndication: Indication? = IndicationAmbient.current(),
+  onClickIndication: Indication? = AmbientIndication.current(),
   onClickInteractionState: InteractionState = remember { InteractionState() },
   update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
@@ -135,7 +135,7 @@ fun ConstraintLayoutScope.BalloonAnchor(
   onBalloonDismiss: () -> Unit = {},
   onBalloonInitialized: (View) -> Unit = { _ -> },
   onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
-  onClickIndication: Indication? = IndicationAmbient.current(),
+  onClickIndication: Indication? = AmbientIndication.current(),
   onClickInteractionState: InteractionState = remember { InteractionState() },
   update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
@@ -188,7 +188,7 @@ fun <T : Balloon.Factory> BalloonAnchor(
   onBalloonDismiss: () -> Unit = {},
   onBalloonInitialized: (View) -> Unit = { _ -> },
   onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
-  onClickIndication: Indication? = IndicationAmbient.current(),
+  onClickIndication: Indication? = AmbientIndication.current(),
   onClickInteractionState: InteractionState = remember { InteractionState() },
   update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
@@ -242,7 +242,7 @@ fun BalloonAnchor(
   onBalloonDismiss: () -> Unit = {},
   onBalloonInitialized: (View) -> Unit = { _ -> },
   onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
-  onClickIndication: Indication? = IndicationAmbient.current(),
+  onClickIndication: Indication? = AmbientIndication.current(),
   onClickInteractionState: InteractionState = remember { InteractionState() },
   update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
