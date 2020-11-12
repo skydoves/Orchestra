@@ -76,7 +76,8 @@ dependencies {
 ### Usage
 `ColorPicker` composable implements a color picker with `AlphaSlideBar` and `BrightnessSlideBar`. We can create an alpha sidebar and brightness sidebar for changing saturation and lightness by tapping on the desired color. They should be used in `children` inner composable in `ColorPicker`, and they receive a `colorPickerView` as a parameter.
 ```kotlin
-val (selectedColor, setSelectedColor) = remember { mutableStateOf(ColorEnvelope(0)) }
+val (selectedColor, setSelectedColor) 
+      = remember { mutableStateOf(ColorEnvelope(0)) }
 ColorPicker(
     modifier = Modifier.fillMaxWidth().height(400.dp),
     onColorListener = { envelope, _ ->
@@ -132,7 +133,8 @@ dependencies {
 `Spinner` composable implements a lightweight dropdown popup spinner. Here is an example for creating a spinner using a sting array resource. We should use the String generic type for creating a spinner when we us a string array resource.
 
 ```kotlin
- val (selectedItem0, setSelectedItem0) = remember { mutableStateOf("Choose a question") }
+ val (selectedItem, setSelectedItem) 
+      = remember { mutableStateOf("Choose a question") }
  Spinner<String>(
       text = selectedItem0,
       modifier = Modifier.fillMaxWidth().padding(16.dp)
@@ -149,7 +151,7 @@ dependencies {
       spinnerPadding = 16.dp,
       spinnerBackgroundColor = MaterialTheme.colors.onBackground,
       onSpinnerItemSelected = { index, item ->
-        setSelectedItem0(item)
+        setSelectedItem(item)
       }
     )
 ```
