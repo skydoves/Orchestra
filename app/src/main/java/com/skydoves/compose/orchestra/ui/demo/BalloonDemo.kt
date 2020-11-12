@@ -17,7 +17,6 @@
 package com.skydoves.compose.orchestra.ui.demo
 
 import androidx.compose.foundation.ScrollableColumn
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.aspectRatio

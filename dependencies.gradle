@@ -13,7 +13,7 @@ ext.versions = [
     kotlin                : '1.4.10',
     androidxAppcompat     : '1.2.0',
     coreKtxVersion        : '1.5.0-alpha03',
-    composeVersion        : '1.0.0-alpha04',
+    composeVersion        : '1.0.0-alpha07',
 
     // compatibles
     balloonVersion        : '1.2.5',
