@@ -10,15 +10,15 @@ ext.versions = [
     dokkaGradle           : '1.4.0',
     bintrayRelease        : '1.0.0',
 
-    kotlin                : '1.4.10',
+    kotlin                : '1.4.21',
     androidxAppcompat     : '1.2.0',
     coreKtxVersion        : '1.5.0-alpha03',
-    composeVersion        : '1.0.0-alpha07',
+    composeVersion        : '1.0.0-alpha09',
 
     // compatibles
-    balloonVersion        : '1.2.5',
+    balloonVersion        : '1.2.8',
     colorPickerViewVersion: '2.2.2',
-    powerSpinnerVersion   : '1.1.5',
+    powerSpinnerVersion   : '1.1.7',
 
     // compose image loading
     landscapistVersion    : '1.0.9',
