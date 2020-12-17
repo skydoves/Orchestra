@@ -27,11 +27,11 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.ripple.RippleIndication
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.ContextAmbient
-import androidx.compose.ui.platform.LifecycleOwnerAmbient
+import androidx.compose.ui.platform.AmbientContext
+import androidx.compose.ui.platform.AmbientLifecycleOwner
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
@@ -79,14 +79,14 @@ fun Poster(
     elevation = 8.dp,
     shape = RoundedCornerShape(8.dp)
   ) {
-    val context = ContextAmbient.current
-    val lifecycleOwner = LifecycleOwnerAmbient.current
+    val context = AmbientContext.current
+    val lifecycleOwner = AmbientLifecycleOwner.current
     ConstraintLayout {
       val (image, title, content, message) = createRefs()
       GlideImage(
-        requestBuilder = Glide.with(ContextAmbient.current)
+        imageModel = poster.poster,
+        requestBuilder = Glide.with(AmbientContext.current)
           .asBitmap()
-          .load(poster.poster)
           .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
           .transition(BitmapTransitionOptions.withCrossFade()),
         modifier = Modifier.constrainAs(image) {
@@ -152,7 +152,7 @@ fun Poster(
           lifecycle = lifecycleOwner
         ),
         onAnchorClick = { balloon, anchor -> balloon.show(anchor) },
-        onClickIndication = RippleIndication(color = purple500)
+        onClickIndication = rememberRipple(bounded = true, color = purple500)
       )
     }
   }

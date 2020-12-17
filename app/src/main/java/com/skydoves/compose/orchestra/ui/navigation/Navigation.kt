@@ -73,6 +73,6 @@ class Navigator<T : Parcelable> private constructor(
  * An [androidx.compose.runtime.Ambient] providing the current [OnBackPressedDispatcher]. You must
  * [provide][androidx.compose.runtime.Providers] a value before use.
  */
-internal val BackDispatcherAmbient = staticAmbientOf<OnBackPressedDispatcher> {
+internal val AmbientBackDispatcher = staticAmbientOf<OnBackPressedDispatcher> {
   error("No Back Dispatcher provided")
 }

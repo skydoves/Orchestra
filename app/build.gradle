@@ -1,7 +1,7 @@
 plugins {
   id 'com.android.application'
   id 'kotlin-android'
-  id 'kotlin-android-extensions'
+  id 'kotlin-parcelize'
 }
 apply from: '../dependencies.gradle'
 
@@ -33,9 +33,6 @@ android {
   buildFeatures {
     compose true
   }
-  androidExtensions {
-    experimental = true
-  }
   packagingOptions {
     exclude 'META-INF/DEPENDENCIES'
     exclude 'META-INF/LICENSE'
@@ -65,7 +62,7 @@ dependencies {
   implementation "androidx.compose.animation:animation:$versions.composeVersion"
   implementation "androidx.compose.runtime:runtime:$versions.composeVersion"
   implementation "androidx.compose.runtime:runtime-livedata:$versions.composeVersion"
-  implementation "androidx.ui:ui-tooling:$versions.composeVersion"
+  implementation "androidx.ui:ui-tooling:$versions.composeToolVersion"
 
   // compose orchestras
   implementation project(":balloon")

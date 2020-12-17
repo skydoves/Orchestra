@@ -20,6 +20,7 @@
 
 package com.skydoves.orchestra.balloon
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.MotionEvent
 import android.view.View
@@ -32,8 +33,8 @@ import androidx.compose.foundation.layout.ConstraintLayoutScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.ContextAmbient
-import androidx.compose.ui.platform.LifecycleOwnerAmbient
+import androidx.compose.ui.platform.AmbientContext
+import androidx.compose.ui.platform.AmbientLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.LifecycleOwner
 import com.skydoves.balloon.Balloon
@@ -66,8 +67,8 @@ fun <T : Balloon.Factory> ConstraintLayoutScope.BalloonAnchor(
   reference: ConstrainedLayoutReference,
   modifier: Modifier = Modifier,
   factory: KClass<T>,
-  context: Context = ContextAmbient.current,
-  lifecycleOwner: LifecycleOwner = LifecycleOwnerAmbient.current,
+  context: Context = AmbientContext.current,
+  lifecycleOwner: LifecycleOwner = AmbientLifecycleOwner.current,
   anchor: View = remember { View(context) },
   onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
   onBalloonClick: (View) -> Unit = { _ -> },
@@ -128,7 +129,7 @@ fun ConstraintLayoutScope.BalloonAnchor(
   reference: ConstrainedLayoutReference,
   modifier: Modifier = Modifier,
   balloon: Balloon,
-  context: Context = ContextAmbient.current,
+  context: Context = AmbientContext.current,
   anchor: View = remember { View(context) },
   onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
   onBalloonClick: (View) -> Unit = { _ -> },
@@ -180,8 +181,8 @@ fun ConstraintLayoutScope.BalloonAnchor(
 fun <T : Balloon.Factory> BalloonAnchor(
   modifier: Modifier = Modifier,
   factory: KClass<T>,
-  context: Context = ContextAmbient.current,
-  lifecycleOwner: LifecycleOwner = LifecycleOwnerAmbient.current,
+  context: Context = AmbientContext.current,
+  lifecycleOwner: LifecycleOwner = AmbientLifecycleOwner.current,
   anchor: View = remember { View(context) },
   onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
   onBalloonClick: (View) -> Unit = { _ -> },
@@ -235,7 +236,7 @@ fun <T : Balloon.Factory> BalloonAnchor(
 fun BalloonAnchor(
   modifier: Modifier = Modifier,
   balloon: Balloon,
-  context: Context = ContextAmbient.current,
+  context: Context = AmbientContext.current,
   anchor: View = remember { View(context) },
   onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
   onBalloonClick: (View) -> Unit = { _ -> },
@@ -267,6 +268,7 @@ fun BalloonAnchor(
   }
 }
 
+@SuppressLint("ModifierFactoryExtensionFunction")
 private fun ConstraintLayoutScope.constraintAsSquare(
   reference: ConstrainedLayoutReference,
   modifier: Modifier,

@@ -32,8 +32,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.ContextAmbient
-import androidx.compose.ui.platform.LifecycleOwnerAmbient
+import androidx.compose.ui.platform.AmbientContext
+import androidx.compose.ui.platform.AmbientLifecycleOwner
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
@@ -89,8 +89,8 @@ import com.skydoves.powerspinner.createPowerSpinnerView
  * val coffeeList = remember { listOf("Americano", "Cold Brew", "Espresso", "Latte") }
  * val (selectedItem1, setSelectedItem1) = remember { mutableStateOf("Choose your coffee") }
  * Spinner(
- *      text = selectedItem1,
  *      modifier = Modifier.fillMaxWidth().padding(16.dp)
+ *      text = selectedItem1,
  *        .background(amber700)
  *        .align(Alignment.CenterHorizontally),
  *      itemList = coffeeList,
@@ -110,24 +110,24 @@ import com.skydoves.powerspinner.createPowerSpinnerView
  */
 @Composable
 fun <T> Spinner(
-  text: String = "",
   modifier: Modifier = Modifier,
+  text: String = "",
   color: Color = Color.Unspecified,
-  fontSize: TextUnit = TextUnit.Inherit,
+  fontSize: TextUnit = TextUnit.Unspecified,
   fontStyle: FontStyle? = null,
   fontWeight: FontWeight? = null,
   fontFamily: FontFamily? = null,
-  letterSpacing: TextUnit = TextUnit.Inherit,
+  letterSpacing: TextUnit = TextUnit.Unspecified,
   textDecoration: TextDecoration? = null,
   textAlign: TextAlign? = null,
-  lineHeight: TextUnit = TextUnit.Inherit,
+  lineHeight: TextUnit = TextUnit.Unspecified,
   overflow: TextOverflow = TextOverflow.Clip,
   softWrap: Boolean = true,
   maxLines: Int = Int.MAX_VALUE,
   onTextLayout: (TextLayoutResult) -> Unit = {},
   style: TextStyle = AmbientTextStyle.current,
-  context: Context = ContextAmbient.current,
-  lifecycleOwner: LifecycleOwner = LifecycleOwnerAmbient.current,
+  context: Context = AmbientContext.current,
+  lifecycleOwner: LifecycleOwner = AmbientLifecycleOwner.current,
   showDivider: Boolean = false,
   dividerSize: Dp = 0.5.dp,
   dividerColor: Color = Color.Unspecified,
@@ -166,7 +166,7 @@ fun <T> Spinner(
         style.color.toArgb()
       }
     )
-    textSize = if (fontSize != TextUnit.Inherit) {
+    textSize = if (fontSize != TextUnit.Unspecified) {
       fontSize.value
     } else {
       style.fontSize.value
@@ -175,8 +175,8 @@ fun <T> Spinner(
     val padding = spinnerPadding.value.toInt()
     setPadding(padding, padding, padding, padding)
     spinnerView.setDisableChangeTextWhenNotified(true)
-    spinnerView.setOnSpinnerItemSelectedListener<T> { position, item ->
-      onSpinnerItemSelected(position, item)
+    spinnerView.setOnSpinnerItemSelectedListener<T> { _, _, newPosition, newItem ->
+      onSpinnerItemSelected(newPosition, newItem)
     }
   }
   ConstraintLayout {

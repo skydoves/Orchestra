@@ -25,7 +25,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumnFor
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -46,28 +46,32 @@ fun Home(actions: Actions, modifier: Modifier = Modifier) {
       .fillMaxSize()
       .background(MaterialTheme.colors.background)
   ) {
-    LazyColumnFor(
-      items = items,
+    LazyColumn(
       contentPadding = PaddingValues(4.dp)
-    ) { item ->
-      val selectItem: () -> Unit = when (item) {
-        "Balloon" -> {
-          actions.selectOnBalloon
+    ) {
+      items(
+        items = items,
+        itemContent = { item ->
+          val selectItem: () -> Unit = when (item) {
+            "Balloon" -> {
+              actions.selectOnBalloon
+            }
+            "ColorPicker" -> {
+              actions.selectOnColorPicker
+            }
+            "Spinner" -> {
+              actions.selectOnSpinner
+            }
+            else -> {
+              { }
+            }
+          }
+          Item(
+            modifier = modifier,
+            title = item,
+            selectItem = selectItem
+          )
         }
-        "ColorPicker" -> {
-          actions.selectOnColorPicker
-        }
-        "Spinner" -> {
-          actions.selectOnSpinner
-        }
-        else -> {
-          { }
-        }
-      }
-      Item(
-        modifier = modifier,
-        title = item,
-        selectItem = selectItem
       )
     }
   }

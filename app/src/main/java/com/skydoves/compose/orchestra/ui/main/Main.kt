@@ -28,7 +28,7 @@ import com.skydoves.compose.orchestra.ui.demo.BalloonDemo
 import com.skydoves.compose.orchestra.ui.demo.ColorPickerDemo
 import com.skydoves.compose.orchestra.ui.demo.SpinnerDemo
 import com.skydoves.compose.orchestra.ui.navigation.Actions
-import com.skydoves.compose.orchestra.ui.navigation.BackDispatcherAmbient
+import com.skydoves.compose.orchestra.ui.navigation.AmbientBackDispatcher
 import com.skydoves.compose.orchestra.ui.navigation.Destination
 import com.skydoves.compose.orchestra.ui.navigation.Navigator
 
@@ -40,7 +40,7 @@ fun Main(backDispatcher: OnBackPressedDispatcher) {
     Navigator(Destination.Home, backDispatcher)
   }
   val actions = remember(navigator) { Actions(navigator) }
-  Providers(BackDispatcherAmbient provides backDispatcher) {
+  Providers(AmbientBackDispatcher provides backDispatcher) {
     Crossfade(navigator.current) { destination ->
       when (destination) {
         Destination.Home -> Home(actions)
