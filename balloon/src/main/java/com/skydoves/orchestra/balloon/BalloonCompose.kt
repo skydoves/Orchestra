@@ -24,18 +24,16 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.MotionEvent
 import android.view.View
-import androidx.compose.foundation.AmbientIndication
-import androidx.compose.foundation.Indication
-import androidx.compose.foundation.InteractionState
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.ConstrainedLayoutReference
-import androidx.compose.foundation.layout.ConstraintLayoutScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.AmbientContext
-import androidx.compose.ui.platform.AmbientLifecycleOwner
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.constraintlayout.compose.ConstrainedLayoutReference
+import androidx.constraintlayout.compose.ConstraintLayoutScope
 import androidx.lifecycle.LifecycleOwner
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.OnBalloonInitializedListener
@@ -57,8 +55,7 @@ import kotlin.reflect.KClass
  *   onBalloonClick = { },
  *   onBalloonDismiss = { },
  *   onBalloonInitialized = { content -> },
- *   onBalloonOutsideTouch = { content, event -> },
- *   onClickIndication = RippleIndication(color = purple500)
+ *   onBalloonOutsideTouch = { content, event -> }
  * )
  * ```
  */
@@ -67,16 +64,17 @@ fun <T : Balloon.Factory> ConstraintLayoutScope.BalloonAnchor(
   reference: ConstrainedLayoutReference,
   modifier: Modifier = Modifier,
   factory: KClass<T>,
-  context: Context = AmbientContext.current,
-  lifecycleOwner: LifecycleOwner = AmbientLifecycleOwner.current,
+  context: Context = LocalContext.current,
+  lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
   anchor: View = remember { View(context) },
   onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
   onBalloonClick: (View) -> Unit = { _ -> },
   onBalloonDismiss: () -> Unit = {},
   onBalloonInitialized: (View) -> Unit = { _ -> },
   onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
-  onClickIndication: Indication? = AmbientIndication.current(),
-  onClickInteractionState: InteractionState = remember { InteractionState() },
+  onClickEnabled: Boolean = true,
+  onClickLabel: String? = null,
+  role: Role? = null,
   update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
   BalloonAnchor(
@@ -94,8 +92,9 @@ fun <T : Balloon.Factory> ConstraintLayoutScope.BalloonAnchor(
     onBalloonDismiss = onBalloonDismiss,
     onBalloonInitialized = onBalloonInitialized,
     onBalloonOutsideTouch = onBalloonOutsideTouch,
-    onClickIndication = onClickIndication,
-    onClickInteractionState = onClickInteractionState,
+    onClickEnabled = onClickEnabled,
+    onClickLabel = onClickLabel,
+    role = role,
     update = update
   )
 }
@@ -119,8 +118,7 @@ fun <T : Balloon.Factory> ConstraintLayoutScope.BalloonAnchor(
  *   onBalloonClick = { },
  *   onBalloonDismiss = { },
  *   onBalloonInitialized = { content -> },
- *   onBalloonOutsideTouch = { content, event -> },
- *   onClickIndication = RippleIndication(color = purple500)
+ *   onBalloonOutsideTouch = { content, event -> }
  * )
  * ```
  */
@@ -129,15 +127,16 @@ fun ConstraintLayoutScope.BalloonAnchor(
   reference: ConstrainedLayoutReference,
   modifier: Modifier = Modifier,
   balloon: Balloon,
-  context: Context = AmbientContext.current,
+  context: Context = LocalContext.current,
   anchor: View = remember { View(context) },
   onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
   onBalloonClick: (View) -> Unit = { _ -> },
   onBalloonDismiss: () -> Unit = {},
   onBalloonInitialized: (View) -> Unit = { _ -> },
   onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
-  onClickIndication: Indication? = AmbientIndication.current(),
-  onClickInteractionState: InteractionState = remember { InteractionState() },
+  onClickEnabled: Boolean = true,
+  onClickLabel: String? = null,
+  role: Role? = null,
   update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
   BalloonAnchor(
@@ -154,8 +153,9 @@ fun ConstraintLayoutScope.BalloonAnchor(
     onBalloonDismiss = onBalloonDismiss,
     onBalloonInitialized = onBalloonInitialized,
     onBalloonOutsideTouch = onBalloonOutsideTouch,
-    onClickIndication = onClickIndication,
-    onClickInteractionState = onClickInteractionState,
+    onClickEnabled = onClickEnabled,
+    onClickLabel = onClickLabel,
+    role = role,
     update = update
   )
 }
@@ -172,8 +172,7 @@ fun ConstraintLayoutScope.BalloonAnchor(
  *   onBalloonClick = { },
  *   onBalloonDismiss = { },
  *   onBalloonInitialized = { content -> },
- *   onBalloonOutsideTouch = { content, event -> },
- *   onClickIndication = RippleIndication(color = purple500)
+ *   onBalloonOutsideTouch = { content, event -> }
  * )
  * ```
  */
@@ -181,16 +180,17 @@ fun ConstraintLayoutScope.BalloonAnchor(
 fun <T : Balloon.Factory> BalloonAnchor(
   modifier: Modifier = Modifier,
   factory: KClass<T>,
-  context: Context = AmbientContext.current,
-  lifecycleOwner: LifecycleOwner = AmbientLifecycleOwner.current,
+  context: Context = LocalContext.current,
+  lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
   anchor: View = remember { View(context) },
   onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
   onBalloonClick: (View) -> Unit = { _ -> },
   onBalloonDismiss: () -> Unit = {},
   onBalloonInitialized: (View) -> Unit = { _ -> },
   onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
-  onClickIndication: Indication? = AmbientIndication.current(),
-  onClickInteractionState: InteractionState = remember { InteractionState() },
+  onClickEnabled: Boolean = true,
+  onClickLabel: String? = null,
+  role: Role? = null,
   update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
   val instance: T = remember { factory::java.get().newInstance() }
@@ -205,8 +205,9 @@ fun <T : Balloon.Factory> BalloonAnchor(
     onBalloonDismiss = onBalloonDismiss,
     onBalloonInitialized = onBalloonInitialized,
     onBalloonOutsideTouch = onBalloonOutsideTouch,
-    onClickIndication = onClickIndication,
-    onClickInteractionState = onClickInteractionState,
+    onClickEnabled = onClickEnabled,
+    onClickLabel = onClickLabel,
+    role = role,
     update = update
   )
 }
@@ -214,7 +215,8 @@ fun <T : Balloon.Factory> BalloonAnchor(
 /*
  * Create an anchor composable of the Balloon that should be referenced for showing Balloon popup.
  * Receives an instance of a Balloon.
- * https://github.com/skydoves/balloon
+ *
+ * @see https://github.com/skydoves/balloon
  *
  * ```
  * BalloonAnchor(
@@ -228,7 +230,6 @@ fun <T : Balloon.Factory> BalloonAnchor(
  *   onBalloonDismiss = { },
  *   onBalloonInitialized = { content -> },
  *   onBalloonOutsideTouch = { content, event -> },
- *   onClickIndication = RippleIndication(color = purple500)
  * )
  * ```
  */
@@ -236,15 +237,16 @@ fun <T : Balloon.Factory> BalloonAnchor(
 fun BalloonAnchor(
   modifier: Modifier = Modifier,
   balloon: Balloon,
-  context: Context = AmbientContext.current,
+  context: Context = LocalContext.current,
   anchor: View = remember { View(context) },
   onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
   onBalloonClick: (View) -> Unit = { _ -> },
   onBalloonDismiss: () -> Unit = {},
   onBalloonInitialized: (View) -> Unit = { _ -> },
   onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
-  onClickIndication: Indication? = AmbientIndication.current(),
-  onClickInteractionState: InteractionState = remember { InteractionState() },
+  onClickEnabled: Boolean = true,
+  onClickLabel: String? = null,
+  role: Role? = null,
   update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
   // initialize Balloon.
@@ -257,10 +259,11 @@ fun BalloonAnchor(
 
   // draw anchor of the Balloon and updates.
   AndroidView(
-    viewBlock = { anchor },
+    factory = { anchor },
     modifier = Modifier.clickable(
-      indication = onClickIndication,
-      interactionState = onClickInteractionState,
+      enabled = onClickEnabled,
+      onClickLabel = onClickLabel,
+      role = role,
       onClick = { onAnchorClick(balloon, anchor) }
     ).then(modifier)
   ) {

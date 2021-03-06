@@ -19,8 +19,8 @@ package com.skydoves.compose.orchestra.ui.navigation
 import android.os.Parcelable
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.OnBackPressedDispatcher
-import androidx.compose.runtime.savedinstancestate.listSaver
-import androidx.compose.runtime.staticAmbientOf
+import androidx.compose.runtime.saveable.listSaver
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.runtime.toMutableStateList
 
 /**
@@ -70,9 +70,9 @@ class Navigator<T : Parcelable> private constructor(
 }
 
 /**
- * An [androidx.compose.runtime.Ambient] providing the current [OnBackPressedDispatcher]. You must
- * [provide][androidx.compose.runtime.Providers] a value before use.
+ * An [androidx.compose.runtime.CompositionLocal] providing the current [OnBackPressedDispatcher]. You must
+ * [provide][androidx.compose.runtime.CompositionLocal] a value before use.
  */
-internal val AmbientBackDispatcher = staticAmbientOf<OnBackPressedDispatcher> {
+internal val LocalBackDispatcher = staticCompositionLocalOf<OnBackPressedDispatcher> {
   error("No Back Dispatcher provided")
 }

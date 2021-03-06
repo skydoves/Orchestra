@@ -49,6 +49,10 @@ dependencies {
   implementation "androidx.compose.runtime:runtime:$versions.composeVersion"
   implementation "androidx.compose.material:material:$versions.composeVersion"
   implementation "androidx.compose.foundation:foundation:$versions.composeVersion"
+  implementation "androidx.constraintlayout:constraintlayout-compose:$versions.constraintVersion"
+
+  // androidx
+  implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycleVersion"
 }
 
 tasks.withType(Javadoc).all { enabled = false }

@@ -18,8 +18,7 @@ package com.skydoves.compose.orchestra.utils
 
 import android.content.Context
 import androidx.lifecycle.LifecycleOwner
-import com.skydoves.balloon.ArrowConstraints
-import com.skydoves.balloon.ArrowOrientation
+import com.skydoves.balloon.ArrowOrientationRules
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonAnimation
 import com.skydoves.balloon.createBalloon
@@ -38,8 +37,7 @@ object BalloonUtils {
     return createBalloon(context) {
       setArrowSize(10)
       setArrowPosition(0.5f)
-      setArrowConstraints(ArrowConstraints.ALIGN_ANCHOR)
-      setArrowOrientation(ArrowOrientation.BOTTOM)
+      setArrowOrientationRules(ArrowOrientationRules.ALIGN_ANCHOR)
       setPadding(10)
       setCornerRadius(8f)
       setElevation(4)

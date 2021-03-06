@@ -19,28 +19,28 @@ package com.skydoves.compose.orchestra.ui.main
 import androidx.activity.OnBackPressedDispatcher
 import androidx.compose.animation.Crossfade
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Providers
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.savedinstancestate.rememberSavedInstanceState
+import androidx.compose.runtime.saveable.rememberSaveable
 import com.skydoves.compose.orchestra.model.MockUtil
 import com.skydoves.compose.orchestra.ui.Home
 import com.skydoves.compose.orchestra.ui.demo.BalloonDemo
 import com.skydoves.compose.orchestra.ui.demo.ColorPickerDemo
 import com.skydoves.compose.orchestra.ui.demo.SpinnerDemo
 import com.skydoves.compose.orchestra.ui.navigation.Actions
-import com.skydoves.compose.orchestra.ui.navigation.AmbientBackDispatcher
 import com.skydoves.compose.orchestra.ui.navigation.Destination
+import com.skydoves.compose.orchestra.ui.navigation.LocalBackDispatcher
 import com.skydoves.compose.orchestra.ui.navigation.Navigator
 
 @Composable
 fun Main(backDispatcher: OnBackPressedDispatcher) {
-  val navigator: Navigator<Destination> = rememberSavedInstanceState(
+  val navigator: Navigator<Destination> = rememberSaveable(
     saver = Navigator.saver(backDispatcher)
   ) {
     Navigator(Destination.Home, backDispatcher)
   }
   val actions = remember(navigator) { Actions(navigator) }
-  Providers(AmbientBackDispatcher provides backDispatcher) {
+  CompositionLocalProvider(LocalBackDispatcher provides backDispatcher) {
     Crossfade(navigator.current) { destination ->
       when (destination) {
         Destination.Home -> Home(actions)

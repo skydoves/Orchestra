@@ -18,7 +18,6 @@ package com.skydoves.compose.orchestra.ui.demo
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ConstraintLayout
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -35,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.compose.orchestra.theme.purple500
 import com.skydoves.orchestra.colorpicker.AlphaSlideBar

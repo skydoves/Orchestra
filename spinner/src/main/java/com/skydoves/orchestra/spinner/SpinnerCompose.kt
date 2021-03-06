@@ -24,16 +24,15 @@ import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
 import androidx.annotation.ArrayRes
-import androidx.compose.foundation.layout.ConstraintLayout
-import androidx.compose.material.AmbientTextStyle
+import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.AmbientContext
-import androidx.compose.ui.platform.AmbientLifecycleOwner
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
@@ -47,6 +46,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.LifecycleOwner
 import com.skydoves.powerspinner.PowerSpinnerView
 import com.skydoves.powerspinner.SpinnerAnimation
@@ -125,9 +125,9 @@ fun <T> Spinner(
   softWrap: Boolean = true,
   maxLines: Int = Int.MAX_VALUE,
   onTextLayout: (TextLayoutResult) -> Unit = {},
-  style: TextStyle = AmbientTextStyle.current,
-  context: Context = AmbientContext.current,
-  lifecycleOwner: LifecycleOwner = AmbientLifecycleOwner.current,
+  style: TextStyle = LocalTextStyle.current,
+  context: Context = LocalContext.current,
+  lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
   showDivider: Boolean = false,
   dividerSize: Dp = 0.5.dp,
   dividerColor: Color = Color.Unspecified,
@@ -182,7 +182,7 @@ fun <T> Spinner(
   ConstraintLayout {
     val (spinner, spinnerText) = createRefs()
     AndroidView(
-      viewBlock = { spinnerView },
+      factory = { spinnerView },
       modifier = modifier.constrainAs(spinner) {
         start.linkTo(parent.start)
         end.linkTo(parent.end)

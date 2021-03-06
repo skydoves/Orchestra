@@ -30,7 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.AmbientContext
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -80,7 +80,7 @@ import com.skydoves.colorpickerview.sliders.BrightnessSlideBar
 @Composable
 fun ColorPicker(
   modifier: Modifier = Modifier,
-  context: Context = AmbientContext.current,
+  context: Context = LocalContext.current,
   onColorListener: (ColorEnvelope, Boolean) -> Unit,
   palette: Drawable? = null,
   selector: Drawable? = null,
@@ -117,7 +117,7 @@ fun ColorPicker(
   }
   Column {
     AndroidView(
-      viewBlock = { colorPickerView },
+      factory = { colorPickerView },
       modifier = modifier
     ) {
       it.post {
@@ -156,7 +156,7 @@ fun ColorPicker(
 @Composable
 fun AlphaSlideBar(
   modifier: Modifier = Modifier,
-  context: Context = AmbientContext.current,
+  context: Context = LocalContext.current,
   colorPickerView: ColorPickerView,
   @FloatRange(from = 0.0, to = 1.0) selectedPosition: Float = 1.0f,
   @DrawableRes selector: Int = R.drawable.wheel,
@@ -170,7 +170,7 @@ fun AlphaSlideBar(
     }
   }
   AndroidView(
-    viewBlock = { alphaSlideBar },
+    factory = { alphaSlideBar },
     modifier = modifier
   ) {
     it.setSelectorDrawableRes(selector)
@@ -209,7 +209,7 @@ fun AlphaSlideBar(
 @Composable
 fun BrightnessSlideBar(
   modifier: Modifier = Modifier,
-  context: Context = AmbientContext.current,
+  context: Context = LocalContext.current,
   colorPickerView: ColorPickerView,
   @FloatRange(from = 0.0, to = 1.0) selectedPosition: Float = 1.0f,
   @DrawableRes selector: Int = R.drawable.wheel,
@@ -223,7 +223,7 @@ fun BrightnessSlideBar(
     }
   }
   AndroidView(
-    viewBlock = { brightnessSlideBar },
+    factory = { brightnessSlideBar },
     modifier = modifier
   ) {
     it.setSelectorDrawableRes(selector)
@@ -251,12 +251,12 @@ fun BrightnessSlideBar(
 @Composable
 fun AlphaTileBox(
   modifier: Modifier = Modifier,
-  context: Context = AmbientContext.current,
+  context: Context = LocalContext.current,
   update: (AlphaTileView) -> Unit = {}
 ) {
   val alphaTileView = remember { AlphaTileView(context) }
   AndroidView(
-    viewBlock = { alphaTileView },
+    factory = { alphaTileView },
     modifier = modifier
   ) {
     update(it)

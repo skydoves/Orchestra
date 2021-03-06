@@ -16,25 +16,26 @@
 
 package com.skydoves.compose.orchestra.ui.demo
 
-import androidx.compose.foundation.ScrollableColumn
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.ConstraintLayout
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.AmbientContext
-import androidx.compose.ui.platform.AmbientLifecycleOwner
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
+import androidx.constraintlayout.compose.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
@@ -42,7 +43,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.skydoves.compose.orchestra.model.MockUtil
 import com.skydoves.compose.orchestra.model.Poster
 import com.skydoves.compose.orchestra.theme.DisneyComposeTheme
-import com.skydoves.compose.orchestra.theme.purple500
 import com.skydoves.compose.orchestra.ui.StaggeredVerticalGrid
 import com.skydoves.compose.orchestra.utils.BalloonUtils
 import com.skydoves.landscapist.glide.GlideImage
@@ -53,8 +53,9 @@ fun BalloonDemo(
   posters: List<Poster>,
   modifier: Modifier = Modifier
 ) {
-  ScrollableColumn(
+  Column(
     modifier = modifier
+      .verticalScroll(rememberScrollState())
       .background(MaterialTheme.colors.background)
   ) {
     StaggeredVerticalGrid(
@@ -79,13 +80,13 @@ fun Poster(
     elevation = 8.dp,
     shape = RoundedCornerShape(8.dp)
   ) {
-    val context = AmbientContext.current
-    val lifecycleOwner = AmbientLifecycleOwner.current
+    val context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current
     ConstraintLayout {
       val (image, title, content, message) = createRefs()
       GlideImage(
         imageModel = poster.poster,
-        requestBuilder = Glide.with(AmbientContext.current)
+        requestBuilder = Glide.with(LocalContext.current)
           .asBitmap()
           .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
           .transition(BitmapTransitionOptions.withCrossFade()),
@@ -151,8 +152,7 @@ fun Poster(
           title = poster.name,
           lifecycle = lifecycleOwner
         ),
-        onAnchorClick = { balloon, anchor -> balloon.show(anchor) },
-        onClickIndication = rememberRipple(bounded = true, color = purple500)
+        onAnchorClick = { balloon, anchor -> balloon.showAlignBottom(anchor) }
       )
     }
   }
