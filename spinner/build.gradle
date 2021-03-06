@@ -4,7 +4,6 @@ plugins {
   id 'org.jetbrains.dokka'
 }
 
-apply plugin: 'com.github.panpf.bintray-publish'
 apply from: '../dependencies.gradle'
 
 android {
@@ -56,16 +55,5 @@ dependencies {
 }
 
 tasks.withType(Javadoc).all { enabled = false }
-
-publish {
-  userOrg = 'devmagician'
-  groupId = 'com.github.skydoves'
-  artifactId = 'orchestra-spinner'
-  publishVersion = versions.versionName
-  desc = 'Android PowerSpinner library compatibles in Jetpack Compose.'
-  website = 'https://github.com/skydoves/Orchestra'
-  issueTracker = "${website}/issues"
-  repository = "${website}.git"
-}
 
 apply from: '../spotless.gradle'

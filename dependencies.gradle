@@ -8,7 +8,6 @@ ext.versions = [
     spotlessGradle        : '5.9.0',
     ktlintGradle          : '0.40.0',
     dokkaGradle           : '1.4.20',
-    bintrayRelease        : '1.0.0',
 
     kotlin                : '1.4.30',
     androidxAppcompat     : '1.2.0',
