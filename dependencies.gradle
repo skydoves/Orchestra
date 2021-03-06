@@ -4,10 +4,11 @@ ext.versions = [
     versionCode           : 4,
     versionName           : '1.0.3',
 
-    gradleBuildTool       : '7.0.0-alpha05',
+    gradleBuildTool       : '7.0.0-alpha08',
     spotlessGradle        : '5.9.0',
     ktlintGradle          : '0.40.0',
     dokkaGradle           : '1.4.20',
+    mavenPublish          : '0.14.2',
 
     kotlin                : '1.4.30',
     androidxAppcompat     : '1.2.0',

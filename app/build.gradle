@@ -7,6 +7,7 @@ apply from: '../dependencies.gradle'
 
 android {
   compileSdkVersion versions.compileSdk
+
   defaultConfig {
     applicationId "com.skydoves.compose.orchestra"
     minSdkVersion versions.minSdk
@@ -14,25 +15,20 @@ android {
     versionCode versions.versionCode
     versionName versions.versionName
   }
+
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
   }
+
   composeOptions {
-    kotlinCompilerVersion versions.kotlin
     kotlinCompilerExtensionVersion versions.composeVersion
   }
-  kotlinOptions {
-    jvmTarget = '1.8'
-    freeCompilerArgs += [
-            "-Xallow-jvm-ir-dependencies",
-            "-Xskip-prerelease-check",
-            "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"]
-    useIR = true
-  }
+
   buildFeatures {
     compose true
   }
+
   packagingOptions {
     exclude 'META-INF/DEPENDENCIES'
     exclude 'META-INF/LICENSE'
@@ -64,6 +60,7 @@ dependencies {
   implementation "androidx.compose.runtime:runtime:$versions.composeVersion"
   implementation "androidx.compose.runtime:runtime-livedata:$versions.composeVersion"
   implementation "androidx.compose.ui:ui-tooling:$versions.composeVersion"
+  implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycleVersion"
   implementation "androidx.constraintlayout:constraintlayout-compose:$versions.constraintVersion"
 
   // compose orchestras

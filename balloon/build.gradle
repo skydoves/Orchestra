@@ -4,32 +4,36 @@ plugins {
   id 'org.jetbrains.dokka'
 }
 
-apply from: '../dependencies.gradle'
+apply from: "$rootDir/dependencies.gradle"
 
 android {
   compileSdkVersion versions.compileSdk
+
   defaultConfig {
     minSdkVersion versions.minSdk
     targetSdkVersion versions.compileSdk
     versionCode versions.versionCode
     versionName versions.versionName
   }
+
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
   }
+
   composeOptions {
-    kotlinCompilerVersion versions.kotlin
     kotlinCompilerExtensionVersion versions.composeVersion
   }
-  kotlinOptions {
-    jvmTarget = '1.8'
-    freeCompilerArgs += ["-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check"]
-    useIR = true
-  }
+
   buildFeatures {
+    viewBinding true
     buildConfig false
     compose true
+  }
+
+  packagingOptions {
+    excludes += "/META-INF/AL2.0"
+    excludes += "/META-INF/LGPL2.1"
   }
 }
 
@@ -42,15 +46,28 @@ dependencies {
   api "com.github.skydoves:balloon:$versions.balloonVersion"
 
   // compose
+  implementation "androidx.compose.ui:ui-util:$versions.composeVersion"
   implementation "androidx.compose.ui:ui:$versions.composeVersion"
   implementation "androidx.compose.runtime:runtime:$versions.composeVersion"
   implementation "androidx.compose.foundation:foundation:$versions.composeVersion"
-  implementation "androidx.constraintlayout:constraintlayout-compose:$versions.constraintVersion"
+  api "androidx.constraintlayout:constraintlayout-compose:$versions.constraintVersion"
 
   // androidx
   implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycleVersion"
 }
 
-tasks.withType(Javadoc).all { enabled = false }
+afterEvaluate {
+  tasks.withType(org.jetbrains.dokka.gradle.DokkaTask).configureEach {
+    outputDirectory.set(rootProject.file('docs/api'))
+  }
+}
 
-apply from: '../spotless.gradle'
+dokkaHtml.configure {
+  dokkaSourceSets {
+    named("main") {
+      noAndroidSdkLink.set(false)
+    }
+  }
+}
+
+apply from: "$rootDir/spotless.gradle"

@@ -4,37 +4,48 @@ plugins {
   id 'org.jetbrains.dokka'
 }
 
-apply from: '../dependencies.gradle'
+apply from: "$rootDir/dependencies.gradle"
 
 android {
   compileSdkVersion versions.compileSdk
+
   defaultConfig {
     minSdkVersion versions.minSdk
     targetSdkVersion versions.compileSdk
     versionCode versions.versionCode
     versionName versions.versionName
   }
+
   compileOptions {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
   }
+
   composeOptions {
-    kotlinCompilerVersion versions.kotlin
     kotlinCompilerExtensionVersion versions.composeVersion
   }
-  kotlinOptions {
-    jvmTarget = '1.8'
-    freeCompilerArgs += ["-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check"]
-    useIR = true
-  }
+
   buildFeatures {
     buildConfig false
     compose true
+  }
+
+  packagingOptions {
+    excludes += "/META-INF/AL2.0"
+    excludes += "/META-INF/LGPL2.1"
   }
 }
 
 kotlin {
   explicitApiWarning()
+}
+
+dokkaHtml.configure {
+  dokkaSourceSets {
+    named("main") {
+      noAndroidSdkLink.set(false)
+    }
+  }
 }
 
 dependencies {
@@ -54,6 +65,5 @@ dependencies {
   implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycleVersion"
 }
 
-tasks.withType(Javadoc).all { enabled = false }
-
-apply from: '../spotless.gradle'
+apply plugin: "com.vanniktech.maven.publish"
+apply from: "$rootDir/spotless.gradle"
