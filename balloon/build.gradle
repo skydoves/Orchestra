@@ -26,7 +26,6 @@ android {
   }
 
   buildFeatures {
-    viewBinding true
     buildConfig false
     compose true
   }
@@ -41,33 +40,29 @@ kotlin {
   explicitApiWarning()
 }
 
-dependencies {
-  // balloon
-  api "com.github.skydoves:balloon:$versions.balloonVersion"
-
-  // compose
-  implementation "androidx.compose.ui:ui-util:$versions.composeVersion"
-  implementation "androidx.compose.ui:ui:$versions.composeVersion"
-  implementation "androidx.compose.runtime:runtime:$versions.composeVersion"
-  implementation "androidx.compose.foundation:foundation:$versions.composeVersion"
-  api "androidx.constraintlayout:constraintlayout-compose:$versions.constraintVersion"
-
-  // androidx
-  implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycleVersion"
-}
-
-afterEvaluate {
-  tasks.withType(org.jetbrains.dokka.gradle.DokkaTask).configureEach {
-    outputDirectory.set(rootProject.file('docs/api'))
-  }
-}
-
 dokkaHtml.configure {
   dokkaSourceSets {
     named("main") {
       noAndroidSdkLink.set(false)
     }
   }
+}
+
+dependencies {
+  implementation "androidx.appcompat:appcompat:$versions.androidxAppcompat"
+
+  // balloon
+  api "com.github.skydoves:balloon:$versions.balloonVersion"
+
+  // compose
+  implementation "androidx.compose.ui:ui:$versions.composeVersion"
+  implementation "androidx.compose.runtime:runtime:$versions.composeVersion"
+  implementation "androidx.compose.material:material:$versions.composeVersion"
+  implementation "androidx.compose.foundation:foundation:$versions.composeVersion"
+  implementation "androidx.constraintlayout:constraintlayout-compose:$versions.constraintVersion"
+
+  // androidx
+  implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycleVersion"
 }
 
 apply from: "$rootDir/spotless.gradle"

@@ -17,8 +17,8 @@
 package com.skydoves.compose.orchestra.ui.main
 
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
@@ -38,7 +38,7 @@ import com.skydoves.compose.orchestra.R
 import com.skydoves.compose.orchestra.theme.DisneyComposeTheme
 import com.skydoves.compose.orchestra.theme.purple200
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
