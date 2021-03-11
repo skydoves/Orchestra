@@ -2,21 +2,35 @@ buildscript {
   apply from: './dependencies.gradle'
   repositories {
     google()
+    mavenCentral()
     jcenter()
   }
   dependencies {
     classpath "com.android.tools.build:gradle:$versions.gradleBuildTool"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
     classpath "com.diffplug.spotless:spotless-plugin-gradle:$versions.spotlessGradle"
+    classpath "com.vanniktech:gradle-maven-publish-plugin:$versions.mavenPublish"
     classpath "org.jetbrains.dokka:dokka-gradle-plugin:$versions.dokkaGradle"
-    classpath "com.github.panpf.bintray-publish:bintray-publish:$versions.bintrayRelease"
   }
 }
 
 allprojects {
   repositories {
     google()
+    mavenCentral()
     jcenter()
+  }
+}
+
+subprojects {
+  tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach { compile ->
+    kotlinOptions {
+      jvmTarget = "1.8"
+      freeCompilerArgs += "-Xallow-jvm-ir-dependencies"
+      freeCompilerArgs += "-Xskip-prerelease-check"
+      freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+      useIR = true
+    }
   }
 }
 
