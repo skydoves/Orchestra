@@ -17,11 +17,20 @@
 </p>
 
 ## Balloon
-[![Download](https://api.bintray.com/packages/devmagician/maven/orchestra-balloon/images/download.svg) ](https://bintray.com/devmagician/maven/orchestra-balloon/_latestVersion) <br>
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/orchestra-balloon.svg?label=Maven%20Central)](https://search.maven.org/search?q=orchestra-balloon)<br>
+
+Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
+```gradle
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+```
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:orchestra-balloon:1.0.3"
+    implementation "com.github.skydoves:orchestra-balloon:1.0.4"
 }
 ```
 
