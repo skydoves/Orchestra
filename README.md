@@ -52,8 +52,7 @@ ConstraintLayout {
       title = poster.name,
       lifecycle = lifecycleOwner
     ),
-    onAnchorClick = { balloon, anchor -> balloon.show(anchor) },
-    onClickIndication = RippleIndication(color = purple500)
+    onAnchorClick = { balloon, anchor -> balloon.show(anchor) }
   )
 ```
 Or we can create a `BalloonAnchor` composable using [Balloon.Factory](https://github.com/skydoves/balloon#lazy-initialization).
@@ -66,8 +65,7 @@ BalloonAnchor(
   onBalloonClick = { },
   onBalloonDismiss = { },
   onBalloonInitialized = { content -> },
-  onBalloonOutsideTouch = { content, event -> },
-  onClickIndication = RippleIndication(color = purple500)
+  onBalloonOutsideTouch = { content, event -> }
 )
 ```
 
