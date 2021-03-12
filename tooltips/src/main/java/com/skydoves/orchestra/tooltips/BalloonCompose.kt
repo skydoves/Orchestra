@@ -14,13 +14,8 @@
  * limitations under the License.
  */
 
-@file:Suppress("unused")
-@file:JvmName("BalloonAnchor")
-@file:JvmMultifileClass
+package com.skydoves.orchestra.tooltips
 
-package com.skydoves.orchestra.balloon
-
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.MotionEvent
 import android.view.View
@@ -51,7 +46,7 @@ import kotlin.reflect.KClass
  *   reference = image,
  *   modifier = Modifier.aspectRatio(0.8f),
  *   factory = MyBalloonFactory::class,
- *   onAnchorClick = { balloon, anchor -> balloon.show(anchor) },
+ *   onAnchorClick = { tooltips, anchor -> tooltips.show(anchor) },
  *   onBalloonClick = { },
  *   onBalloonDismiss = { },
  *   onBalloonInitialized = { content -> },
@@ -78,11 +73,14 @@ fun <T : Balloon.Factory> ConstraintLayoutScope.BalloonAnchor(
   update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
   BalloonAnchor(
-    modifier = constraintAsSquare(
-      modifier = modifier,
-      reference = reference,
-      anchorId = anchor.id
-    ),
+    modifier = modifier.apply {
+      constrainAs(ConstrainedLayoutReference(anchor.id)) {
+        start.linkTo(reference.start)
+        end.linkTo(reference.end)
+        top.linkTo(reference.top)
+        bottom.linkTo(reference.bottom)
+      }
+    },
     factory = factory,
     context = context,
     lifecycleOwner = lifecycleOwner,
@@ -110,11 +108,11 @@ fun <T : Balloon.Factory> ConstraintLayoutScope.BalloonAnchor(
  * BalloonAnchor(
  *   reference = image,
  *   modifier = Modifier.aspectRatio(0.8f),
- *   balloon = balloonUtils.getTitleBalloon(
+ *   tooltips = balloonUtils.getTitleBalloon(
  *     title = poster.name,
  *     context = context,
  *     lifecycle = lifecycleOwner),
- *   onAnchorClick = { balloon, anchor -> balloon.show(anchor) },
+ *   onAnchorClick = { tooltips, anchor -> tooltips.show(anchor) },
  *   onBalloonClick = { },
  *   onBalloonDismiss = { },
  *   onBalloonInitialized = { content -> },
@@ -140,11 +138,14 @@ fun ConstraintLayoutScope.BalloonAnchor(
   update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
   BalloonAnchor(
-    modifier = constraintAsSquare(
-      modifier = modifier,
-      reference = reference,
-      anchorId = anchor.id
-    ),
+    modifier = modifier.apply {
+      constrainAs(ConstrainedLayoutReference(anchor.id)) {
+        start.linkTo(reference.start)
+        end.linkTo(reference.end)
+        top.linkTo(reference.top)
+        bottom.linkTo(reference.bottom)
+      }
+    },
     balloon = balloon,
     context = context,
     anchor = anchor,
@@ -168,7 +169,7 @@ fun ConstraintLayoutScope.BalloonAnchor(
  * BalloonAnchor(
  *   modifier = Modifier.aspectRatio(0.8f),
  *   factory = MyBalloonFactory::class,
- *   onAnchorClick = { balloon, anchor -> balloon.show(anchor) },
+ *   onAnchorClick = { tooltips, anchor -> tooltips.show(anchor) },
  *   onBalloonClick = { },
  *   onBalloonDismiss = { },
  *   onBalloonInitialized = { content -> },
@@ -221,11 +222,11 @@ fun <T : Balloon.Factory> BalloonAnchor(
  * ```
  * BalloonAnchor(
  *   modifier = Modifier.aspectRatio(0.8f),
- *   balloon = balloonUtils.getTitleBalloon(
+ *   tooltips = balloonUtils.getTitleBalloon(
  *     title = poster.name,
  *     context = context,
  *     lifecycle = lifecycleOwner),
- *   onAnchorClick = { balloon, anchor -> balloon.show(anchor) },
+ *   onAnchorClick = { tooltips, anchor -> tooltips.show(anchor) },
  *   onBalloonClick = { },
  *   onBalloonDismiss = { },
  *   onBalloonInitialized = { content -> },
@@ -260,27 +261,15 @@ fun BalloonAnchor(
   // draw anchor of the Balloon and updates.
   AndroidView(
     factory = { anchor },
-    modifier = Modifier.clickable(
-      enabled = onClickEnabled,
-      onClickLabel = onClickLabel,
-      role = role,
-      onClick = { onAnchorClick(balloon, anchor) }
-    ).then(modifier)
+    modifier = Modifier
+      .clickable(
+        enabled = onClickEnabled,
+        onClickLabel = onClickLabel,
+        role = role,
+        onClick = { onAnchorClick(balloon, anchor) }
+      )
+      .then(modifier)
   ) {
     update(balloon, it)
-  }
-}
-
-@SuppressLint("ModifierFactoryExtensionFunction")
-private fun ConstraintLayoutScope.constraintAsSquare(
-  reference: ConstrainedLayoutReference,
-  modifier: Modifier,
-  anchorId: Int
-): Modifier {
-  return modifier.constrainAs(ConstrainedLayoutReference(anchorId)) {
-    start.linkTo(reference.start)
-    end.linkTo(reference.end)
-    top.linkTo(reference.top)
-    bottom.linkTo(reference.bottom)
   }
 }

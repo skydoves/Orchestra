@@ -1,5 +1,5 @@
 rootProject.name = "OrchestraDemo"
 include ':app'
-include ':balloon'
+include ':tooltips'
 include ':colorpicker'
 include ':spinner'

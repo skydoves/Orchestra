@@ -46,7 +46,7 @@ import com.skydoves.compose.orchestra.theme.DisneyComposeTheme
 import com.skydoves.compose.orchestra.ui.StaggeredVerticalGrid
 import com.skydoves.compose.orchestra.utils.BalloonUtils
 import com.skydoves.landscapist.glide.GlideImage
-import com.skydoves.orchestra.balloon.BalloonAnchor
+import com.skydoves.orchestra.tooltips.BalloonAnchor
 
 @Composable
 fun BalloonDemo(

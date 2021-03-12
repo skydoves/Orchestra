@@ -49,15 +49,12 @@ dokkaHtml.configure {
 }
 
 dependencies {
-  implementation "androidx.appcompat:appcompat:$versions.androidxAppcompat"
-
   // balloon
   api "com.github.skydoves:balloon:$versions.balloonVersion"
 
   // compose
   implementation "androidx.compose.ui:ui:$versions.composeVersion"
   implementation "androidx.compose.runtime:runtime:$versions.composeVersion"
-  implementation "androidx.compose.material:material:$versions.composeVersion"
   implementation "androidx.compose.foundation:foundation:$versions.composeVersion"
   implementation "androidx.constraintlayout:constraintlayout-compose:$versions.constraintVersion"
 
@@ -65,4 +62,5 @@ dependencies {
   implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycleVersion"
 }
 
+apply plugin: "com.vanniktech.maven.publish"
 apply from: "$rootDir/spotless.gradle"
