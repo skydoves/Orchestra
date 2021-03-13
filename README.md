@@ -17,7 +17,7 @@
 </p>
 
 ## Balloon
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/orchestra-balloon.svg?label=Maven%20Central)](https://search.maven.org/search?q=orchestra-balloon)<br>
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/orchestra-balloon.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22orchestra-balloon%22)<br>
 
 Add below codes to your **root** `build.gradle` file (not your module build.gradle file).
 ```gradle
@@ -70,7 +70,7 @@ BalloonAnchor(
 ```
 
 ## ColorPicker
-[![Download](https://api.bintray.com/packages/devmagician/maven/orchestra-colorpicker/images/download.svg) ](https://bintray.com/devmagician/maven/orchestra-colorpicker/_latestVersion)<br>
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/orchestra-colorpicker.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22orchestra-colorpicker%22)<br>
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
@@ -126,7 +126,7 @@ AlphaTileBox(
 ```
 
 ## Spinner
-[![Download](https://api.bintray.com/packages/devmagician/maven/orchestra-spinner/images/download.svg) ](https://bintray.com/devmagician/maven/orchestra-spinner/_latestVersion) <br>
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/orchestra-spinner.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22orchestra-spinner%22)<br>
 And add a dependency code to your **module**'s `build.gradle` file.
 ```gradle
 dependencies {
