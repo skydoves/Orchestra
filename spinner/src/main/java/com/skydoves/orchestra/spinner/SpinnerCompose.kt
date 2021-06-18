@@ -230,5 +230,6 @@ internal fun TextAlign.toGravity(): Int {
     TextAlign.Start, TextAlign.Left -> Gravity.START
     TextAlign.End, TextAlign.Right -> Gravity.END
     TextAlign.Justify -> Gravity.NO_GRAVITY
+    else -> throw IllegalArgumentException("Wrong type of the gravity: $this")
   }
 }
