@@ -38,7 +38,6 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.skydoves.compose.orchestra.model.MockUtil
 import com.skydoves.compose.orchestra.model.Poster
@@ -87,13 +86,14 @@ fun Poster(
       GlideImage(
         imageModel = poster.poster,
         requestBuilder = Glide.with(LocalContext.current)
-          .asBitmap()
-          .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
-          .transition(BitmapTransitionOptions.withCrossFade()),
-        modifier = Modifier.constrainAs(image) {
-          centerHorizontallyTo(parent)
-          top.linkTo(parent.top)
-        }.aspectRatio(0.8f),
+          .asDrawable()
+          .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)),
+        modifier = Modifier
+          .constrainAs(image) {
+            centerHorizontallyTo(parent)
+            top.linkTo(parent.top)
+          }
+          .aspectRatio(0.8f),
         loading = {
           ConstraintLayout(
             modifier = Modifier.fillMaxSize()
@@ -129,19 +129,23 @@ fun Poster(
         text = poster.name,
         style = MaterialTheme.typography.h2,
         textAlign = TextAlign.Center,
-        modifier = Modifier.constrainAs(title) {
-          centerHorizontallyTo(parent)
-          top.linkTo(image.bottom)
-        }.padding(8.dp)
+        modifier = Modifier
+          .constrainAs(title) {
+            centerHorizontallyTo(parent)
+            top.linkTo(image.bottom)
+          }
+          .padding(8.dp)
       )
       Text(
         text = poster.playtime,
         style = MaterialTheme.typography.body1,
         textAlign = TextAlign.Center,
-        modifier = Modifier.constrainAs(content) {
-          centerHorizontallyTo(parent)
-          top.linkTo(title.bottom)
-        }.padding(horizontal = 8.dp)
+        modifier = Modifier
+          .constrainAs(content) {
+            centerHorizontallyTo(parent)
+            top.linkTo(title.bottom)
+          }
+          .padding(horizontal = 8.dp)
           .padding(bottom = 12.dp)
       )
       BalloonAnchor(
