@@ -1,0 +1,7 @@
+public final class com/skydoves/orchestra/colorpicker/ColorPicker {
+	public static final fun AlphaSlideBar-wyJVWrg (Landroidx/compose/ui/Modifier;Landroid/content/Context;Lcom/skydoves/colorpickerview/ColorPickerView;FIJFLkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun AlphaTileBox (Landroidx/compose/ui/Modifier;Landroid/content/Context;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun BrightnessSlideBar-wyJVWrg (Landroidx/compose/ui/Modifier;Landroid/content/Context;Lcom/skydoves/colorpickerview/ColorPickerView;FIJFLkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+	public static final fun ColorPicker-gzOsVxs (Landroidx/compose/ui/Modifier;Landroid/content/Context;Lkotlin/jvm/functions/Function2;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Lcom/skydoves/colorpickerview/flag/FlagView;Lcom/skydoves/colorpickerview/ActionMode;IFLandroid/graphics/Point;FLandroidx/compose/ui/graphics/Color;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
+}
+
