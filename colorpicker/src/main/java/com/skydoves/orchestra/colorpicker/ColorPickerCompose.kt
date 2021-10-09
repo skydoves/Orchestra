@@ -78,7 +78,7 @@ import com.skydoves.colorpickerview.sliders.BrightnessSlideBar
  * ```
  */
 @Composable
-fun ColorPicker(
+public fun ColorPicker(
   modifier: Modifier = Modifier,
   context: Context = LocalContext.current,
   onColorListener: (ColorEnvelope, Boolean) -> Unit,
@@ -154,7 +154,7 @@ fun ColorPicker(
  * ```
  */
 @Composable
-fun AlphaSlideBar(
+public fun AlphaSlideBar(
   modifier: Modifier = Modifier,
   context: Context = LocalContext.current,
   colorPickerView: ColorPickerView,
@@ -207,7 +207,7 @@ fun AlphaSlideBar(
  * ```
  */
 @Composable
-fun BrightnessSlideBar(
+public fun BrightnessSlideBar(
   modifier: Modifier = Modifier,
   context: Context = LocalContext.current,
   colorPickerView: ColorPickerView,
@@ -249,7 +249,7 @@ fun BrightnessSlideBar(
  * ```
  */
 @Composable
-fun AlphaTileBox(
+public fun AlphaTileBox(
   modifier: Modifier = Modifier,
   context: Context = LocalContext.current,
   update: (AlphaTileView) -> Unit = {}
@@ -263,7 +263,7 @@ fun AlphaTileBox(
   }
 }
 
-internal fun Context.dp2Px(dp: Dp): Int {
+private fun Context.dp2Px(dp: Dp): Int {
   val scale = resources.displayMetrics.density
   return (dp.value * scale).toInt()
 }

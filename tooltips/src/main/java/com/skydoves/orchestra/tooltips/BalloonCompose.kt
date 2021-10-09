@@ -55,7 +55,7 @@ import kotlin.reflect.KClass
  * ```
  */
 @Composable
-fun <T : Balloon.Factory> ConstraintLayoutScope.BalloonAnchor(
+public fun <T : Balloon.Factory> ConstraintLayoutScope.BalloonAnchor(
   reference: ConstrainedLayoutReference,
   modifier: Modifier = Modifier,
   factory: KClass<T>,
@@ -121,7 +121,7 @@ fun <T : Balloon.Factory> ConstraintLayoutScope.BalloonAnchor(
  * ```
  */
 @Composable
-fun ConstraintLayoutScope.BalloonAnchor(
+public fun ConstraintLayoutScope.BalloonAnchor(
   reference: ConstrainedLayoutReference,
   modifier: Modifier = Modifier,
   balloon: Balloon,
@@ -178,7 +178,7 @@ fun ConstraintLayoutScope.BalloonAnchor(
  * ```
  */
 @Composable
-fun <T : Balloon.Factory> BalloonAnchor(
+public fun <T : Balloon.Factory> BalloonAnchor(
   modifier: Modifier = Modifier,
   factory: KClass<T>,
   context: Context = LocalContext.current,
@@ -235,7 +235,7 @@ fun <T : Balloon.Factory> BalloonAnchor(
  * ```
  */
 @Composable
-fun BalloonAnchor(
+public fun BalloonAnchor(
   modifier: Modifier = Modifier,
   balloon: Balloon,
   context: Context = LocalContext.current,
