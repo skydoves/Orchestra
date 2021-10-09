@@ -35,7 +35,6 @@ private val DarkColorPalette = darkColors(
 
 private val LightColorPalette = lightColors(
   background = Color.White,
-  onBackground = Color.White,
   surface = Color.White,
   primary = purple200,
   primaryVariant = purple500,

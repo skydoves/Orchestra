@@ -109,7 +109,7 @@ import com.skydoves.powerspinner.createPowerSpinnerView
  * ```
  */
 @Composable
-fun <T> Spinner(
+public fun <T> Spinner(
   modifier: Modifier = Modifier,
   text: String = "",
   color: Color = Color.Unspecified,
@@ -219,12 +219,12 @@ fun <T> Spinner(
   }
 }
 
-internal fun Context.dp2Px(dp: Dp): Int {
+private fun Context.dp2Px(dp: Dp): Int {
   val scale = resources.displayMetrics.density
   return (dp.value * scale).toInt()
 }
 
-internal fun TextAlign.toGravity(): Int {
+private fun TextAlign.toGravity(): Int {
   return when (this) {
     TextAlign.Center -> Gravity.CENTER
     TextAlign.Start, TextAlign.Left -> Gravity.START
