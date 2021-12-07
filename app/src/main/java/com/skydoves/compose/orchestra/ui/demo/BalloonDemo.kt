@@ -81,13 +81,18 @@ fun Poster(
   ) {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
+
     ConstraintLayout {
+
       val (image, title, content, message) = createRefs()
+
       GlideImage(
         imageModel = poster.poster,
-        requestBuilder = Glide.with(LocalContext.current)
-          .asDrawable()
-          .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)),
+        requestBuilder = {
+          Glide.with(LocalContext.current)
+            .asDrawable()
+            .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+        },
         modifier = Modifier
           .constrainAs(image) {
             centerHorizontallyTo(parent)
@@ -125,6 +130,7 @@ fun Poster(
           }
         }
       )
+
       Text(
         text = poster.name,
         style = MaterialTheme.typography.h2,
@@ -136,6 +142,7 @@ fun Poster(
           }
           .padding(8.dp)
       )
+
       Text(
         text = poster.playtime,
         style = MaterialTheme.typography.body1,
@@ -148,6 +155,7 @@ fun Poster(
           .padding(horizontal = 8.dp)
           .padding(bottom = 12.dp)
       )
+
       BalloonAnchor(
         reference = image,
         modifier = Modifier.aspectRatio(0.8f),
