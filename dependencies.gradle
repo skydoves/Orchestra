@@ -28,7 +28,7 @@ ext.versions = [
     powerSpinnerVersion   : '1.1.8',
 
     // compose image loading
-    landscapistVersion    : '1.4.4',
+    landscapistVersion    : '1.4.8',
 
     // for demo
     materialVersion       : '1.4.0'
