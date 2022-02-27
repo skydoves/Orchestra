@@ -17,13 +17,13 @@ ext.versions = [
     lifecycleVersion      : '2.4.0',
 
     // compose
-    composeVersion        : '1.1.0',
+    composeVersion        : '1.1.1',
     composeToolVersion    : '1.0.0-alpha07',
     constraintVersion     : '1.0.0-alpha07',
     activityVersion       : '1.4.0',
 
     // compatibles
-    balloonVersion        : '1.4.1',
+    balloonVersion        : '1.4.2',
     colorPickerViewVersion: '2.2.4',
     powerSpinnerVersion   : '1.1.8',
 
