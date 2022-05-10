@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-🎺 A collection of Jetpack Compose compatible libraries for Balloon, ColorPickerView, PowerSpinner.
+🎺 A collection of Jetpack Compose libraries, which are compatible with custom views for Android.
 </p>
 <p align="center">
 <img src="https://user-images.githubusercontent.com/24237865/61194943-f9d70380-a6ff-11e9-807f-ba1ca8126f8a.gif" width="32%"/>
@@ -31,7 +31,7 @@ allprojects {
 Next, add the dependency below to your **module**'s `build.gradle` file:
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:orchestra-balloon:1.1.3"
+    implementation "com.github.skydoves:orchestra-balloon:1.1.4"
 }
 ```
 
