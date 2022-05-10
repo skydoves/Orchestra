@@ -1,19 +1,22 @@
+import com.skydoves.orchestra.Configuration
+import com.skydoves.orchestra.Dependencies
+import com.skydoves.orchestra.Versions
+
 plugins {
   id 'com.android.application'
   id 'kotlin-android'
   id 'kotlin-parcelize'
 }
-apply from: '../dependencies.gradle'
 
 android {
-  compileSdkVersion versions.compileSdk
+  compileSdkVersion Configuration.compileSdk
 
   defaultConfig {
     applicationId "com.skydoves.compose.orchestra"
-    minSdkVersion versions.minSdk
-    targetSdkVersion versions.compileSdk
-    versionCode versions.versionCode
-    versionName versions.versionName
+    minSdkVersion Configuration.minSdk
+    targetSdkVersion Configuration.targetSdk
+    versionCode Configuration.versionCode
+    versionName Configuration.versionName
   }
 
   compileOptions {
@@ -26,7 +29,7 @@ android {
   }
 
   composeOptions {
-    kotlinCompilerExtensionVersion versions.composeVersion
+    kotlinCompilerExtensionVersion Versions.COMPOSE
   }
 
   buildFeatures {
@@ -34,31 +37,30 @@ android {
   }
 
   packagingOptions {
-    excludes += "/META-INF/AL2.0"
-    excludes += "/META-INF/LGPL2.1"
+    resources {
+      excludes += '/META-INF/{AL2.0,LGPL2.1}'
+    }
   }
 }
 
 dependencies {
   // material
-  implementation "com.google.android.material:material:$versions.materialVersion"
+  implementation Dependencies.material
 
   // androidx jetpack
-  implementation "androidx.core:core-ktx:$versions.coreKtxVersion"
+  implementation Dependencies.coreKtx
+  implementation Dependencies.lifecycle
 
   // compose
-  implementation "androidx.compose.ui:ui:$versions.composeVersion"
-  implementation "androidx.activity:activity-compose:$versions.activityVersion"
-  implementation "androidx.compose.material:material:$versions.composeVersion"
-  implementation "androidx.compose.material:material-icons-extended:$versions.composeVersion"
-  implementation "androidx.compose.foundation:foundation:$versions.composeVersion"
-  implementation "androidx.compose.foundation:foundation-layout:$versions.composeVersion"
-  implementation "androidx.compose.animation:animation:$versions.composeVersion"
-  implementation "androidx.compose.runtime:runtime:$versions.composeVersion"
-  implementation "androidx.compose.runtime:runtime-livedata:$versions.composeVersion"
-  implementation "androidx.compose.ui:ui-tooling:$versions.composeVersion"
-  implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycleVersion"
-  implementation "androidx.constraintlayout:constraintlayout-compose:$versions.constraintVersion"
+  implementation Dependencies.composeUI
+  implementation Dependencies.composeActivity
+  implementation Dependencies.composeMaterial
+  implementation Dependencies.composeFoundation
+  implementation Dependencies.composeAnimation
+  implementation Dependencies.composeRuntime
+  implementation Dependencies.composeRuntimeLivedata
+  implementation Dependencies.composeTooling
+  implementation Dependencies.composeConstraint
 
   // compose orchestras
   implementation project(":tooltips")
@@ -66,7 +68,7 @@ dependencies {
   implementation project(":spinner")
 
   // compose image loading
-  implementation "com.github.skydoves:landscapist-glide:$versions.landscapistVersion"
+  implementation Dependencies.landscapist
 }
 
-apply from: '../spotless.gradle'
+apply from: "$rootDir/spotless.gradle"

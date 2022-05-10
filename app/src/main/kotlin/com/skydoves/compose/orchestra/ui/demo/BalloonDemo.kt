@@ -49,143 +49,143 @@ import com.skydoves.orchestra.tooltips.BalloonAnchor
 
 @Composable
 fun BalloonDemo(
-  posters: List<Poster>,
-  modifier: Modifier = Modifier
+    posters: List<Poster>,
+    modifier: Modifier = Modifier
 ) {
-  Column(
-    modifier = modifier
-      .verticalScroll(rememberScrollState())
-      .background(MaterialTheme.colors.background)
-  ) {
-    StaggeredVerticalGrid(
-      maxColumnWidth = 220.dp,
-      modifier = Modifier.padding(4.dp)
+    Column(
+        modifier = modifier
+            .verticalScroll(rememberScrollState())
+            .background(MaterialTheme.colors.background)
     ) {
-      posters.forEach { poster ->
-        Poster(poster = poster)
-      }
+        StaggeredVerticalGrid(
+            maxColumnWidth = 220.dp,
+            modifier = Modifier.padding(4.dp)
+        ) {
+            posters.forEach { poster ->
+                Poster(poster = poster)
+            }
+        }
     }
-  }
 }
 
 @Composable
 fun Poster(
-  poster: Poster,
-  modifier: Modifier = Modifier
+    poster: Poster,
+    modifier: Modifier = Modifier
 ) {
-  Surface(
-    modifier = modifier.padding(4.dp),
-    color = MaterialTheme.colors.onBackground,
-    elevation = 8.dp,
-    shape = RoundedCornerShape(8.dp)
-  ) {
-    val context = LocalContext.current
-    val lifecycleOwner = LocalLifecycleOwner.current
+    Surface(
+        modifier = modifier.padding(4.dp),
+        color = MaterialTheme.colors.onBackground,
+        elevation = 8.dp,
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        val context = LocalContext.current
+        val lifecycleOwner = LocalLifecycleOwner.current
 
-    ConstraintLayout {
+        ConstraintLayout {
 
-      val (image, title, content, message) = createRefs()
+            val (image, title, content, message) = createRefs()
 
-      GlideImage(
-        imageModel = poster.poster,
-        requestBuilder = {
-          Glide.with(LocalContext.current)
-            .asDrawable()
-            .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
-        },
-        modifier = Modifier
-          .constrainAs(image) {
-            centerHorizontallyTo(parent)
-            top.linkTo(parent.top)
-          }
-          .aspectRatio(0.8f),
-        loading = {
-          ConstraintLayout(
-            modifier = Modifier.fillMaxSize()
-          ) {
-            val indicator = createRef()
-            CircularProgressIndicator(
-              modifier = Modifier.constrainAs(indicator) {
-                top.linkTo(parent.top)
-                bottom.linkTo(parent.bottom)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-              }
+            GlideImage(
+                imageModel = poster.poster,
+                requestBuilder = {
+                    Glide.with(LocalContext.current)
+                        .asDrawable()
+                        .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL))
+                },
+                modifier = Modifier
+                    .constrainAs(image) {
+                        centerHorizontallyTo(parent)
+                        top.linkTo(parent.top)
+                    }
+                    .aspectRatio(0.8f),
+                loading = {
+                    ConstraintLayout(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        val indicator = createRef()
+                        CircularProgressIndicator(
+                            modifier = Modifier.constrainAs(indicator) {
+                                top.linkTo(parent.top)
+                                bottom.linkTo(parent.bottom)
+                                start.linkTo(parent.start)
+                                end.linkTo(parent.end)
+                            }
+                        )
+                    }
+                },
+                failure = {
+                    ConstraintLayout(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        Text(
+                            text = "image request failed.",
+                            modifier = Modifier.constrainAs(message) {
+                                top.linkTo(parent.top)
+                                bottom.linkTo(parent.bottom)
+                                start.linkTo(parent.start)
+                                end.linkTo(parent.end)
+                            }
+                        )
+                    }
+                }
             )
-          }
-        },
-        failure = {
-          ConstraintLayout(
-            modifier = Modifier.fillMaxSize()
-          ) {
+
             Text(
-              text = "image request failed.",
-              modifier = Modifier.constrainAs(message) {
-                top.linkTo(parent.top)
-                bottom.linkTo(parent.bottom)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-              }
+                text = poster.name,
+                style = MaterialTheme.typography.h2,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .constrainAs(title) {
+                        centerHorizontallyTo(parent)
+                        top.linkTo(image.bottom)
+                    }
+                    .padding(8.dp)
             )
-          }
+
+            Text(
+                text = poster.playtime,
+                style = MaterialTheme.typography.body1,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .constrainAs(content) {
+                        centerHorizontallyTo(parent)
+                        top.linkTo(title.bottom)
+                    }
+                    .padding(horizontal = 8.dp)
+                    .padding(bottom = 12.dp)
+            )
+
+            BalloonAnchor(
+                reference = image,
+                modifier = Modifier.aspectRatio(0.8f),
+                balloon = BalloonUtils.getTitleBalloon(
+                    context = context,
+                    title = poster.name,
+                    lifecycle = lifecycleOwner
+                ),
+                onAnchorClick = { balloon, anchor -> balloon.showAlignBottom(anchor) }
+            )
         }
-      )
-
-      Text(
-        text = poster.name,
-        style = MaterialTheme.typography.h2,
-        textAlign = TextAlign.Center,
-        modifier = Modifier
-          .constrainAs(title) {
-            centerHorizontallyTo(parent)
-            top.linkTo(image.bottom)
-          }
-          .padding(8.dp)
-      )
-
-      Text(
-        text = poster.playtime,
-        style = MaterialTheme.typography.body1,
-        textAlign = TextAlign.Center,
-        modifier = Modifier
-          .constrainAs(content) {
-            centerHorizontallyTo(parent)
-            top.linkTo(title.bottom)
-          }
-          .padding(horizontal = 8.dp)
-          .padding(bottom = 12.dp)
-      )
-
-      BalloonAnchor(
-        reference = image,
-        modifier = Modifier.aspectRatio(0.8f),
-        balloon = BalloonUtils.getTitleBalloon(
-          context = context,
-          title = poster.name,
-          lifecycle = lifecycleOwner
-        ),
-        onAnchorClick = { balloon, anchor -> balloon.showAlignBottom(anchor) }
-      )
     }
-  }
 }
 
 @Preview
 @Composable
 fun PosterPreviewLight() {
-  DisneyComposeTheme(darkTheme = false) {
-    Poster(
-      poster = MockUtil.getMockPoster()
-    )
-  }
+    DisneyComposeTheme(darkTheme = false) {
+        Poster(
+            poster = MockUtil.getMockPoster()
+        )
+    }
 }
 
 @Preview
 @Composable
 fun PosterPreviewDark() {
-  DisneyComposeTheme(darkTheme = true) {
-    Poster(
-      poster = MockUtil.getMockPoster()
-    )
-  }
+    DisneyComposeTheme(darkTheme = true) {
+        Poster(
+            poster = MockUtil.getMockPoster()
+        )
+    }
 }

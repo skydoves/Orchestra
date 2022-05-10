@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2020 skydoves (Jaewoong Eum)
+ * Copyright (C) 2019 skydoves
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 
-package com.skydoves.compose.orchestra.model
+package com.skydoves.orchestra
 
-import androidx.compose.runtime.Immutable
-
-@Immutable
-data class Poster(
-    val name: String,
-    val release: String,
-    val playtime: String,
-    val description: String,
-    val poster: String
-)
+object Configuration {
+  const val compileSdk = 31
+  const val targetSdk = 31
+  const val minSdk = 21
+  const val majorVersion = 1
+  const val minorVersion = 1
+  const val patchVersion = 4
+  const val versionName = "$majorVersion.$minorVersion.$patchVersion"
+  const val versionCode = 14
+  const val snapshotVersionName = "$majorVersion.$minorVersion.${patchVersion + 1}-SNAPSHOT"
+  const val artifactGroup = "com.github.skydoves"
+}

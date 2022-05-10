@@ -111,132 +111,132 @@ import com.skydoves.powerspinner.createPowerSpinnerView
  */
 @Composable
 public fun <T> Spinner(
-  modifier: Modifier = Modifier,
-  text: String = "",
-  color: Color = Color.Unspecified,
-  fontSize: TextUnit = TextUnit.Unspecified,
-  fontStyle: FontStyle? = null,
-  fontWeight: FontWeight? = null,
-  fontFamily: FontFamily? = null,
-  letterSpacing: TextUnit = TextUnit.Unspecified,
-  textDecoration: TextDecoration? = null,
-  textAlign: TextAlign? = null,
-  popupWidth: Dp? = null,
-  popupHeight: Dp? = null,
-  itemHeight: Dp? = null,
-  lineHeight: TextUnit = TextUnit.Unspecified,
-  overflow: TextOverflow = TextOverflow.Clip,
-  softWrap: Boolean = true,
-  maxLines: Int = Int.MAX_VALUE,
-  onTextLayout: (TextLayoutResult) -> Unit = {},
-  style: TextStyle = LocalTextStyle.current,
-  context: Context = LocalContext.current,
-  lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
-  showDivider: Boolean = false,
-  dividerSize: Dp = 0.5.dp,
-  dividerColor: Color = Color.Unspecified,
-  spinnerPadding: Dp = 0.dp,
-  spinnerBackgroundColor: Color = Color.Unspecified,
-  onSpinnerItemSelected: (Int, T) -> Unit = { _, _ -> },
-  onSpinnerOutsideTouched: (View, MotionEvent) -> Unit = { _, _ -> },
-  dismissWhenNotifiedItemSelected: Boolean = true,
-  spinnerAnimation: SpinnerAnimation = SpinnerAnimation.NORMAL,
-  @ArrayRes itemListRes: Int? = null,
-  itemList: List<T> = listOf(),
-  update: (PowerSpinnerView) -> Unit = {}
+    modifier: Modifier = Modifier,
+    text: String = "",
+    color: Color = Color.Unspecified,
+    fontSize: TextUnit = TextUnit.Unspecified,
+    fontStyle: FontStyle? = null,
+    fontWeight: FontWeight? = null,
+    fontFamily: FontFamily? = null,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    textAlign: TextAlign? = null,
+    popupWidth: Dp? = null,
+    popupHeight: Dp? = null,
+    itemHeight: Dp? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    style: TextStyle = LocalTextStyle.current,
+    context: Context = LocalContext.current,
+    lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
+    showDivider: Boolean = false,
+    dividerSize: Dp = 0.5.dp,
+    dividerColor: Color = Color.Unspecified,
+    spinnerPadding: Dp = 0.dp,
+    spinnerBackgroundColor: Color = Color.Unspecified,
+    onSpinnerItemSelected: (Int, T) -> Unit = { _, _ -> },
+    onSpinnerOutsideTouched: (View, MotionEvent) -> Unit = { _, _ -> },
+    dismissWhenNotifiedItemSelected: Boolean = true,
+    spinnerAnimation: SpinnerAnimation = SpinnerAnimation.NORMAL,
+    @ArrayRes itemListRes: Int? = null,
+    itemList: List<T> = listOf(),
+    update: (PowerSpinnerView) -> Unit = {}
 ) {
-  val spinnerView = remember {
-    createPowerSpinnerView(context) {
-      setShowArrow(false)
-      setShowDivider(showDivider)
-      setDividerColor(dividerColor.toArgb())
-      setDividerSize(context.dp2Px(dividerSize))
-      setLifecycleOwner(lifecycleOwner)
-      setSpinnerPopupAnimation(spinnerAnimation)
-      setSpinnerPopupBackground(ColorDrawable(spinnerBackgroundColor.toArgb()))
-      setDismissWhenNotifiedItemSelected(dismissWhenNotifiedItemSelected)
-      setOnSpinnerOutsideTouchListener { view, motionEvent ->
-        onSpinnerOutsideTouched(view, motionEvent)
-      }
-      popupWidth?.let { setSpinnerPopupWidth(context.dp2Px(it)) }
-      popupHeight?.let { setSpinnerPopupHeight(context.dp2Px(it)) }
-      itemHeight?.let { setSpinnerItemHeight(context.dp2Px(it)) }
+    val spinnerView = remember {
+        createPowerSpinnerView(context) {
+            setShowArrow(false)
+            setShowDivider(showDivider)
+            setDividerColor(dividerColor.toArgb())
+            setDividerSize(context.dp2Px(dividerSize))
+            setLifecycleOwner(lifecycleOwner)
+            setSpinnerPopupAnimation(spinnerAnimation)
+            setSpinnerPopupBackground(ColorDrawable(spinnerBackgroundColor.toArgb()))
+            setDismissWhenNotifiedItemSelected(dismissWhenNotifiedItemSelected)
+            setOnSpinnerOutsideTouchListener { view, motionEvent ->
+                onSpinnerOutsideTouched(view, motionEvent)
+            }
+            popupWidth?.let { setSpinnerPopupWidth(context.dp2Px(it)) }
+            popupHeight?.let { setSpinnerPopupHeight(context.dp2Px(it)) }
+            itemHeight?.let { setSpinnerItemHeight(context.dp2Px(it)) }
+        }
     }
-  }
-  with(spinnerView) {
-    itemListRes?.let { setItems(it) } ?: setItems(itemList)
-    setIsFocusable(true)
-    setTextColor(
-      if (color != Color.Unspecified) {
-        color.toArgb()
-      } else {
-        style.color.toArgb()
-      }
-    )
-    textSize = if (fontSize != TextUnit.Unspecified) {
-      fontSize.value
-    } else {
-      style.fontSize.value
+    with(spinnerView) {
+        itemListRes?.let { setItems(it) } ?: setItems(itemList)
+        setIsFocusable(true)
+        setTextColor(
+            if (color != Color.Unspecified) {
+                color.toArgb()
+            } else {
+                style.color.toArgb()
+            }
+        )
+        textSize = if (fontSize != TextUnit.Unspecified) {
+            fontSize.value
+        } else {
+            style.fontSize.value
+        }
+        textAlign?.let { gravity = it.toGravity() }
+        val padding = spinnerPadding.value.toInt()
+        setPadding(padding, padding, padding, padding)
+        spinnerView.setDisableChangeTextWhenNotified(true)
+        spinnerView.setOnSpinnerItemSelectedListener<T> { _, _, newPosition, newItem ->
+            onSpinnerItemSelected(newPosition, newItem)
+        }
     }
-    textAlign?.let { gravity = it.toGravity() }
-    val padding = spinnerPadding.value.toInt()
-    setPadding(padding, padding, padding, padding)
-    spinnerView.setDisableChangeTextWhenNotified(true)
-    spinnerView.setOnSpinnerItemSelectedListener<T> { _, _, newPosition, newItem ->
-      onSpinnerItemSelected(newPosition, newItem)
+    ConstraintLayout {
+        val (spinner, spinnerText) = createRefs()
+        AndroidView(
+            factory = { spinnerView },
+            modifier = modifier.constrainAs(spinner) {
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                top.linkTo(parent.top)
+                bottom.linkTo(parent.bottom)
+            }
+        ) {
+            update(it)
+        }
+        Text(
+            AnnotatedString(text),
+            Modifier.constrainAs(spinnerText) {
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                top.linkTo(parent.top)
+                bottom.linkTo(parent.bottom)
+            },
+            color,
+            fontSize,
+            fontStyle,
+            fontWeight,
+            fontFamily,
+            letterSpacing,
+            textDecoration,
+            textAlign,
+            lineHeight,
+            overflow,
+            softWrap,
+            maxLines,
+            emptyMap(),
+            onTextLayout,
+            style
+        )
     }
-  }
-  ConstraintLayout {
-    val (spinner, spinnerText) = createRefs()
-    AndroidView(
-      factory = { spinnerView },
-      modifier = modifier.constrainAs(spinner) {
-        start.linkTo(parent.start)
-        end.linkTo(parent.end)
-        top.linkTo(parent.top)
-        bottom.linkTo(parent.bottom)
-      }
-    ) {
-      update(it)
-    }
-    Text(
-      AnnotatedString(text),
-      Modifier.constrainAs(spinnerText) {
-        start.linkTo(parent.start)
-        end.linkTo(parent.end)
-        top.linkTo(parent.top)
-        bottom.linkTo(parent.bottom)
-      },
-      color,
-      fontSize,
-      fontStyle,
-      fontWeight,
-      fontFamily,
-      letterSpacing,
-      textDecoration,
-      textAlign,
-      lineHeight,
-      overflow,
-      softWrap,
-      maxLines,
-      emptyMap(),
-      onTextLayout,
-      style
-    )
-  }
 }
 
 private fun Context.dp2Px(dp: Dp): Int {
-  val scale = resources.displayMetrics.density
-  return (dp.value * scale).toInt()
+    val scale = resources.displayMetrics.density
+    return (dp.value * scale).toInt()
 }
 
 private fun TextAlign.toGravity(): Int {
-  return when (this) {
-    TextAlign.Center -> Gravity.CENTER
-    TextAlign.Start, TextAlign.Left -> Gravity.START
-    TextAlign.End, TextAlign.Right -> Gravity.END
-    TextAlign.Justify -> Gravity.NO_GRAVITY
-    else -> throw IllegalArgumentException("Wrong type of the gravity: $this")
-  }
+    return when (this) {
+        TextAlign.Center -> Gravity.CENTER
+        TextAlign.Start, TextAlign.Left -> Gravity.START
+        TextAlign.End, TextAlign.Right -> Gravity.END
+        TextAlign.Justify -> Gravity.NO_GRAVITY
+        else -> throw IllegalArgumentException("Wrong type of the gravity: $this")
+    }
 }
