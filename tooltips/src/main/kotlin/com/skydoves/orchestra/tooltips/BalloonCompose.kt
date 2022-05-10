@@ -56,45 +56,45 @@ import kotlin.reflect.KClass
  */
 @Composable
 public fun <T : Balloon.Factory> ConstraintLayoutScope.BalloonAnchor(
-  reference: ConstrainedLayoutReference,
-  modifier: Modifier = Modifier,
-  factory: KClass<T>,
-  context: Context = LocalContext.current,
-  lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
-  anchor: View = remember { View(context) },
-  onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
-  onBalloonClick: (View) -> Unit = { _ -> },
-  onBalloonDismiss: () -> Unit = {},
-  onBalloonInitialized: (View) -> Unit = { _ -> },
-  onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
-  onClickEnabled: Boolean = true,
-  onClickLabel: String? = null,
-  role: Role? = null,
-  update: (Balloon, View) -> Unit = { _, _ -> }
+    reference: ConstrainedLayoutReference,
+    modifier: Modifier = Modifier,
+    factory: KClass<T>,
+    context: Context = LocalContext.current,
+    lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
+    anchor: View = remember { View(context) },
+    onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
+    onBalloonClick: (View) -> Unit = { _ -> },
+    onBalloonDismiss: () -> Unit = {},
+    onBalloonInitialized: (View) -> Unit = { _ -> },
+    onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
+    onClickEnabled: Boolean = true,
+    onClickLabel: String? = null,
+    role: Role? = null,
+    update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
-  BalloonAnchor(
-    modifier = modifier.apply {
-      constrainAs(ConstrainedLayoutReference(anchor.id)) {
-        start.linkTo(reference.start)
-        end.linkTo(reference.end)
-        top.linkTo(reference.top)
-        bottom.linkTo(reference.bottom)
-      }
-    },
-    factory = factory,
-    context = context,
-    lifecycleOwner = lifecycleOwner,
-    anchor = anchor,
-    onAnchorClick = onAnchorClick,
-    onBalloonClick = onBalloonClick,
-    onBalloonDismiss = onBalloonDismiss,
-    onBalloonInitialized = onBalloonInitialized,
-    onBalloonOutsideTouch = onBalloonOutsideTouch,
-    onClickEnabled = onClickEnabled,
-    onClickLabel = onClickLabel,
-    role = role,
-    update = update
-  )
+    BalloonAnchor(
+        modifier = modifier.apply {
+            constrainAs(ConstrainedLayoutReference(anchor.id)) {
+                start.linkTo(reference.start)
+                end.linkTo(reference.end)
+                top.linkTo(reference.top)
+                bottom.linkTo(reference.bottom)
+            }
+        },
+        factory = factory,
+        context = context,
+        lifecycleOwner = lifecycleOwner,
+        anchor = anchor,
+        onAnchorClick = onAnchorClick,
+        onBalloonClick = onBalloonClick,
+        onBalloonDismiss = onBalloonDismiss,
+        onBalloonInitialized = onBalloonInitialized,
+        onBalloonOutsideTouch = onBalloonOutsideTouch,
+        onClickEnabled = onClickEnabled,
+        onClickLabel = onClickLabel,
+        role = role,
+        update = update
+    )
 }
 
 /**
@@ -122,43 +122,43 @@ public fun <T : Balloon.Factory> ConstraintLayoutScope.BalloonAnchor(
  */
 @Composable
 public fun ConstraintLayoutScope.BalloonAnchor(
-  reference: ConstrainedLayoutReference,
-  modifier: Modifier = Modifier,
-  balloon: Balloon,
-  context: Context = LocalContext.current,
-  anchor: View = remember { View(context) },
-  onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
-  onBalloonClick: (View) -> Unit = { _ -> },
-  onBalloonDismiss: () -> Unit = {},
-  onBalloonInitialized: (View) -> Unit = { _ -> },
-  onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
-  onClickEnabled: Boolean = true,
-  onClickLabel: String? = null,
-  role: Role? = null,
-  update: (Balloon, View) -> Unit = { _, _ -> }
+    reference: ConstrainedLayoutReference,
+    modifier: Modifier = Modifier,
+    balloon: Balloon,
+    context: Context = LocalContext.current,
+    anchor: View = remember { View(context) },
+    onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
+    onBalloonClick: (View) -> Unit = { _ -> },
+    onBalloonDismiss: () -> Unit = {},
+    onBalloonInitialized: (View) -> Unit = { _ -> },
+    onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
+    onClickEnabled: Boolean = true,
+    onClickLabel: String? = null,
+    role: Role? = null,
+    update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
-  BalloonAnchor(
-    modifier = modifier.apply {
-      constrainAs(ConstrainedLayoutReference(anchor.id)) {
-        start.linkTo(reference.start)
-        end.linkTo(reference.end)
-        top.linkTo(reference.top)
-        bottom.linkTo(reference.bottom)
-      }
-    },
-    balloon = balloon,
-    context = context,
-    anchor = anchor,
-    onAnchorClick = onAnchorClick,
-    onBalloonClick = onBalloonClick,
-    onBalloonDismiss = onBalloonDismiss,
-    onBalloonInitialized = onBalloonInitialized,
-    onBalloonOutsideTouch = onBalloonOutsideTouch,
-    onClickEnabled = onClickEnabled,
-    onClickLabel = onClickLabel,
-    role = role,
-    update = update
-  )
+    BalloonAnchor(
+        modifier = modifier.apply {
+            constrainAs(ConstrainedLayoutReference(anchor.id)) {
+                start.linkTo(reference.start)
+                end.linkTo(reference.end)
+                top.linkTo(reference.top)
+                bottom.linkTo(reference.bottom)
+            }
+        },
+        balloon = balloon,
+        context = context,
+        anchor = anchor,
+        onAnchorClick = onAnchorClick,
+        onBalloonClick = onBalloonClick,
+        onBalloonDismiss = onBalloonDismiss,
+        onBalloonInitialized = onBalloonInitialized,
+        onBalloonOutsideTouch = onBalloonOutsideTouch,
+        onClickEnabled = onClickEnabled,
+        onClickLabel = onClickLabel,
+        role = role,
+        update = update
+    )
 }
 
 /**
@@ -179,38 +179,38 @@ public fun ConstraintLayoutScope.BalloonAnchor(
  */
 @Composable
 public fun <T : Balloon.Factory> BalloonAnchor(
-  modifier: Modifier = Modifier,
-  factory: KClass<T>,
-  context: Context = LocalContext.current,
-  lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
-  anchor: View = remember { View(context) },
-  onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
-  onBalloonClick: (View) -> Unit = { _ -> },
-  onBalloonDismiss: () -> Unit = {},
-  onBalloonInitialized: (View) -> Unit = { _ -> },
-  onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
-  onClickEnabled: Boolean = true,
-  onClickLabel: String? = null,
-  role: Role? = null,
-  update: (Balloon, View) -> Unit = { _, _ -> }
+    modifier: Modifier = Modifier,
+    factory: KClass<T>,
+    context: Context = LocalContext.current,
+    lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
+    anchor: View = remember { View(context) },
+    onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
+    onBalloonClick: (View) -> Unit = { _ -> },
+    onBalloonDismiss: () -> Unit = {},
+    onBalloonInitialized: (View) -> Unit = { _ -> },
+    onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
+    onClickEnabled: Boolean = true,
+    onClickLabel: String? = null,
+    role: Role? = null,
+    update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
-  val instance: T = remember { factory::java.get().newInstance() }
-  val balloon: Balloon = remember { instance.create(context, lifecycleOwner) }
-  BalloonAnchor(
-    modifier = modifier,
-    balloon = balloon,
-    context = context,
-    anchor = anchor,
-    onAnchorClick = onAnchorClick,
-    onBalloonClick = onBalloonClick,
-    onBalloonDismiss = onBalloonDismiss,
-    onBalloonInitialized = onBalloonInitialized,
-    onBalloonOutsideTouch = onBalloonOutsideTouch,
-    onClickEnabled = onClickEnabled,
-    onClickLabel = onClickLabel,
-    role = role,
-    update = update
-  )
+    val instance: T = remember { factory::java.get().newInstance() }
+    val balloon: Balloon = remember { instance.create(context, lifecycleOwner) }
+    BalloonAnchor(
+        modifier = modifier,
+        balloon = balloon,
+        context = context,
+        anchor = anchor,
+        onAnchorClick = onAnchorClick,
+        onBalloonClick = onBalloonClick,
+        onBalloonDismiss = onBalloonDismiss,
+        onBalloonInitialized = onBalloonInitialized,
+        onBalloonOutsideTouch = onBalloonOutsideTouch,
+        onClickEnabled = onClickEnabled,
+        onClickLabel = onClickLabel,
+        role = role,
+        update = update
+    )
 }
 
 /*
@@ -236,40 +236,40 @@ public fun <T : Balloon.Factory> BalloonAnchor(
  */
 @Composable
 public fun BalloonAnchor(
-  modifier: Modifier = Modifier,
-  balloon: Balloon,
-  context: Context = LocalContext.current,
-  anchor: View = remember { View(context) },
-  onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
-  onBalloonClick: (View) -> Unit = { _ -> },
-  onBalloonDismiss: () -> Unit = {},
-  onBalloonInitialized: (View) -> Unit = { _ -> },
-  onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
-  onClickEnabled: Boolean = true,
-  onClickLabel: String? = null,
-  role: Role? = null,
-  update: (Balloon, View) -> Unit = { _, _ -> }
+    modifier: Modifier = Modifier,
+    balloon: Balloon,
+    context: Context = LocalContext.current,
+    anchor: View = remember { View(context) },
+    onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
+    onBalloonClick: (View) -> Unit = { _ -> },
+    onBalloonDismiss: () -> Unit = {},
+    onBalloonInitialized: (View) -> Unit = { _ -> },
+    onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
+    onClickEnabled: Boolean = true,
+    onClickLabel: String? = null,
+    role: Role? = null,
+    update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
-  // initialize Balloon.
-  balloon.setOnBalloonClickListener { onBalloonClick(it) }
-  balloon.setOnBalloonDismissListener { onBalloonDismiss() }
-  balloon.onBalloonInitializedListener = OnBalloonInitializedListener { onBalloonInitialized(it) }
-  balloon.setOnBalloonOutsideTouchListener { view, motionEvent ->
-    onBalloonOutsideTouch(view, motionEvent)
-  }
+    // initialize Balloon.
+    balloon.setOnBalloonClickListener { onBalloonClick(it) }
+    balloon.setOnBalloonDismissListener { onBalloonDismiss() }
+    balloon.onBalloonInitializedListener = OnBalloonInitializedListener { onBalloonInitialized(it) }
+    balloon.setOnBalloonOutsideTouchListener { view, motionEvent ->
+        onBalloonOutsideTouch(view, motionEvent)
+    }
 
-  // draw anchor of the Balloon and updates.
-  AndroidView(
-    factory = { anchor },
-    modifier = Modifier
-      .clickable(
-        enabled = onClickEnabled,
-        onClickLabel = onClickLabel,
-        role = role,
-        onClick = { onAnchorClick(balloon, anchor) }
-      )
-      .then(modifier)
-  ) {
-    update(balloon, it)
-  }
+    // draw anchor of the Balloon and updates.
+    AndroidView(
+        factory = { anchor },
+        modifier = Modifier
+            .clickable(
+                enabled = onClickEnabled,
+                onClickLabel = onClickLabel,
+                role = role,
+                onClick = { onAnchorClick(balloon, anchor) }
+            )
+            .then(modifier)
+    ) {
+        update(balloon, it)
+    }
 }

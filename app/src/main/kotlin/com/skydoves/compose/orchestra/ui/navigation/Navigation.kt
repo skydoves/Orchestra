@@ -27,46 +27,46 @@ import androidx.compose.runtime.toMutableStateList
  * A simple navigator which maintains a back stack.
  */
 class Navigator<T : Parcelable> private constructor(
-  initialBackStack: List<T>,
-  backDispatcher: OnBackPressedDispatcher
-) {
-  constructor(
-    initial: T,
+    initialBackStack: List<T>,
     backDispatcher: OnBackPressedDispatcher
-  ) : this(listOf(initial), backDispatcher)
+) {
+    constructor(
+        initial: T,
+        backDispatcher: OnBackPressedDispatcher
+    ) : this(listOf(initial), backDispatcher)
 
-  private val backStack = initialBackStack.toMutableStateList()
-  private val backCallback = object : OnBackPressedCallback(canGoBack()) {
-    override fun handleOnBackPressed() {
-      back()
+    private val backStack = initialBackStack.toMutableStateList()
+    private val backCallback = object : OnBackPressedCallback(canGoBack()) {
+        override fun handleOnBackPressed() {
+            back()
+        }
+    }.also { callback ->
+        backDispatcher.addCallback(callback)
     }
-  }.also { callback ->
-    backDispatcher.addCallback(callback)
-  }
-  val current: T get() = backStack.last()
+    val current: T get() = backStack.last()
 
-  fun back() {
-    backStack.removeAt(backStack.lastIndex)
-    backCallback.isEnabled = canGoBack()
-  }
+    fun back() {
+        backStack.removeAt(backStack.lastIndex)
+        backCallback.isEnabled = canGoBack()
+    }
 
-  fun navigate(destination: T) {
-    backStack += destination
-    backCallback.isEnabled = canGoBack()
-  }
+    fun navigate(destination: T) {
+        backStack += destination
+        backCallback.isEnabled = canGoBack()
+    }
 
-  private fun canGoBack(): Boolean = backStack.size > 1
+    private fun canGoBack(): Boolean = backStack.size > 1
 
-  companion object {
-    /**
-     * Serialize the back stack to save to instance state.
-     */
-    fun <T : Parcelable> saver(backDispatcher: OnBackPressedDispatcher) =
-      listSaver<Navigator<T>, T>(
-        save = { navigator -> navigator.backStack.toList() },
-        restore = { backstack -> Navigator(backstack, backDispatcher) }
-      )
-  }
+    companion object {
+        /**
+         * Serialize the back stack to save to instance state.
+         */
+        fun <T : Parcelable> saver(backDispatcher: OnBackPressedDispatcher) =
+            listSaver<Navigator<T>, T>(
+                save = { navigator -> navigator.backStack.toList() },
+                restore = { backstack -> Navigator(backstack, backDispatcher) }
+            )
+    }
 }
 
 /**
@@ -74,5 +74,5 @@ class Navigator<T : Parcelable> private constructor(
  * [provide][androidx.compose.runtime.CompositionLocal] a value before use.
  */
 internal val LocalBackDispatcher = staticCompositionLocalOf<OnBackPressedDispatcher> {
-  error("No Back Dispatcher provided")
+    error("No Back Dispatcher provided")
 }

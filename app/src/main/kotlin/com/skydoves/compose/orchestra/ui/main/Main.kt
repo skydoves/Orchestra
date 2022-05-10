@@ -34,22 +34,22 @@ import com.skydoves.compose.orchestra.ui.navigation.Navigator
 
 @Composable
 fun Main(backDispatcher: OnBackPressedDispatcher) {
-  val navigator: Navigator<Destination> = rememberSaveable(
-    saver = Navigator.saver(backDispatcher)
-  ) {
-    Navigator(Destination.Home, backDispatcher)
-  }
-  val actions = remember(navigator) { Actions(navigator) }
-  CompositionLocalProvider(LocalBackDispatcher provides backDispatcher) {
-    Crossfade(navigator.current) { destination ->
-      when (destination) {
-        Destination.Home -> Home(actions)
-        is Destination.BalloonDemo -> {
-          BalloonDemo(posters = MockUtil.getMockPosters())
-        }
-        is Destination.ColorPickerDemo -> ColorPickerDemo()
-        is Destination.SpinnerDemo -> SpinnerDemo()
-      }
+    val navigator: Navigator<Destination> = rememberSaveable(
+        saver = Navigator.saver(backDispatcher)
+    ) {
+        Navigator(Destination.Home, backDispatcher)
     }
-  }
+    val actions = remember(navigator) { Actions(navigator) }
+    CompositionLocalProvider(LocalBackDispatcher provides backDispatcher) {
+        Crossfade(navigator.current) { destination ->
+            when (destination) {
+                Destination.Home -> Home(actions)
+                is Destination.BalloonDemo -> {
+                    BalloonDemo(posters = MockUtil.getMockPosters())
+                }
+                is Destination.ColorPickerDemo -> ColorPickerDemo()
+                is Destination.SpinnerDemo -> SpinnerDemo()
+            }
+        }
+    }
 }
