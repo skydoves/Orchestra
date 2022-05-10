@@ -20,6 +20,7 @@
 package com.skydoves.orchestra.spinner
 
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
@@ -120,6 +121,9 @@ public fun <T> Spinner(
   letterSpacing: TextUnit = TextUnit.Unspecified,
   textDecoration: TextDecoration? = null,
   textAlign: TextAlign? = null,
+  popupWidth: Dp? = null,
+  popupHeight: Dp? = null,
+  itemHeight: Dp? = null,
   lineHeight: TextUnit = TextUnit.Unspecified,
   overflow: TextOverflow = TextOverflow.Clip,
   softWrap: Boolean = true,
@@ -149,11 +153,14 @@ public fun <T> Spinner(
       setDividerSize(context.dp2Px(dividerSize))
       setLifecycleOwner(lifecycleOwner)
       setSpinnerPopupAnimation(spinnerAnimation)
-      setSpinnerPopupBackgroundColor(spinnerBackgroundColor.toArgb())
+      setSpinnerPopupBackground(ColorDrawable(spinnerBackgroundColor.toArgb()))
       setDismissWhenNotifiedItemSelected(dismissWhenNotifiedItemSelected)
       setOnSpinnerOutsideTouchListener { view, motionEvent ->
         onSpinnerOutsideTouched(view, motionEvent)
       }
+      popupWidth?.let { setSpinnerPopupWidth(context.dp2Px(it)) }
+      popupHeight?.let { setSpinnerPopupHeight(context.dp2Px(it)) }
+      itemHeight?.let { setSpinnerItemHeight(context.dp2Px(it)) }
     }
   }
   with(spinnerView) {
