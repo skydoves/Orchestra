@@ -25,7 +25,7 @@ ext.versions = [
     // compatibles
     balloonVersion        : '1.4.5',
     colorPickerViewVersion: '2.2.4',
-    powerSpinnerVersion   : '1.1.8',
+    powerSpinnerVersion   : '1.2.1',
 
     // compose image loading
     landscapistVersion    : '1.4.8',
