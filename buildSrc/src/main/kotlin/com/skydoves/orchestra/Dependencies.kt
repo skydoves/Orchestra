@@ -19,9 +19,9 @@ object Versions {
 
   internal const val BALLOON = "1.4.5"
   internal const val COLORPICKERVIEW = "2.2.4"
-  internal const val POWERSPINNER = "1.2.1"
+  internal const val POWERSPINNER = "1.2.3"
 
-  internal const val LANDSCAPIST = "1.5.1"
+  internal const val LANDSCAPIST = "1.5.2"
 }
 
 object Dependencies {
