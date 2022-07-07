@@ -31,7 +31,7 @@ allprojects {
 Next, add the dependency below to your **module**'s `build.gradle` file:
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:orchestra-balloon:1.1.4"
+    implementation "com.github.skydoves:orchestra-balloon:1.1.5"
 }
 ```
 
