@@ -41,62 +41,75 @@ import com.skydoves.orchestra.colorpicker.AlphaSlideBar
 import com.skydoves.orchestra.colorpicker.AlphaTileBox
 import com.skydoves.orchestra.colorpicker.BrightnessSlideBar
 import com.skydoves.orchestra.colorpicker.ColorPicker
+import com.skydoves.orchestra.colorpicker.ColorPickerProperties
 
 @Composable
 fun ColorPickerDemo(modifier: Modifier = Modifier) {
-    val (selectedColor, setSelectedColor) = remember { mutableStateOf(ColorEnvelope(0)) }
-    Surface(
-        color = MaterialTheme.colors.onBackground,
-        modifier = modifier.fillMaxSize()
+  val (selectedColor, setSelectedColor) = remember { mutableStateOf(ColorEnvelope(0)) }
+  Surface(
+    color = MaterialTheme.colors.onBackground,
+    modifier = modifier.fillMaxSize()
+  ) {
+    ConstraintLayout(
+      modifier = Modifier.padding(horizontal = 10.dp, vertical = 40.dp)
     ) {
-        ConstraintLayout(
-            modifier = Modifier.padding(horizontal = 10.dp, vertical = 40.dp)
-        ) {
-            val (colorPicker, square, colorCode) = createRefs()
-            ColorPicker(
-                modifier = modifier.constrainAs(colorPicker) {
-                    centerHorizontallyTo(parent)
-                }.fillMaxWidth().height(400.dp),
-                onColorListener = { envelope, _ ->
-                    setSelectedColor(envelope)
-                },
-                initialColor = purple500,
-                children = { colorPickerView ->
-                    Column(modifier = Modifier.padding(top = 32.dp)) {
-                        Box(modifier = Modifier.padding(vertical = 6.dp)) {
-                            AlphaSlideBar(
-                                modifier = Modifier.fillMaxWidth().height(30.dp)
-                                    .clip(RoundedCornerShape(4.dp)),
-                                colorPickerView = colorPickerView
-                            )
-                        }
-                        Box(modifier = Modifier.padding(vertical = 6.dp)) {
-                            BrightnessSlideBar(
-                                modifier = Modifier.fillMaxWidth().height(30.dp)
-                                    .clip(RoundedCornerShape(4.dp)),
-                                colorPickerView = colorPickerView
-                            )
-                        }
-                    }
-                }
-            )
-            AlphaTileBox(
-                modifier = modifier.constrainAs(square) {
-                    bottom.linkTo(parent.bottom)
-                    centerHorizontallyTo(parent)
-                }.size(64.dp).clip(RoundedCornerShape(4.dp))
-            ) {
-                it.setBackgroundColor(selectedColor.color)
+      val (colorPicker, square, colorCode) = createRefs()
+      ColorPicker(
+        modifier = modifier
+          .constrainAs(colorPicker) {
+            centerHorizontallyTo(parent)
+          }
+          .fillMaxWidth()
+          .height(400.dp),
+        onColorListener = { envelope, _ ->
+          setSelectedColor(envelope)
+        },
+        properties = ColorPickerProperties(initialColor = purple500),
+        children = { colorPickerView ->
+          Column(modifier = Modifier.padding(top = 32.dp)) {
+            Box(modifier = Modifier.padding(vertical = 6.dp)) {
+              AlphaSlideBar(
+                modifier = Modifier
+                  .fillMaxWidth()
+                  .height(30.dp)
+                  .clip(RoundedCornerShape(4.dp)),
+                colorPickerView = colorPickerView
+              )
             }
-            Text(
-                text = "#${selectedColor.hexCode}",
-                style = MaterialTheme.typography.h2,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.constrainAs(colorCode) {
-                    centerHorizontallyTo(parent)
-                    bottom.linkTo(square.top)
-                }.padding(8.dp)
-            )
+            Box(modifier = Modifier.padding(vertical = 6.dp)) {
+              BrightnessSlideBar(
+                modifier = Modifier
+                  .fillMaxWidth()
+                  .height(30.dp)
+                  .clip(RoundedCornerShape(4.dp)),
+                colorPickerView = colorPickerView
+              )
+            }
+          }
         }
+      )
+      AlphaTileBox(
+        modifier = modifier
+          .constrainAs(square) {
+            bottom.linkTo(parent.bottom)
+            centerHorizontallyTo(parent)
+          }
+          .size(64.dp)
+          .clip(RoundedCornerShape(4.dp))
+      ) {
+        it.setBackgroundColor(selectedColor.color)
+      }
+      Text(
+        text = "#${selectedColor.hexCode}",
+        style = MaterialTheme.typography.h2,
+        textAlign = TextAlign.Center,
+        modifier = Modifier
+          .constrainAs(colorCode) {
+            centerHorizontallyTo(parent)
+            bottom.linkTo(square.top)
+          }
+          .padding(8.dp)
+      )
     }
+  }
 }

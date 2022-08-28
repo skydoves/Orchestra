@@ -39,37 +39,37 @@ import com.skydoves.compose.orchestra.theme.DisneyComposeTheme
 import com.skydoves.compose.orchestra.theme.purple200
 
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-        setContent {
-            DisneyComposeTheme {
-                Scaffold(
-                    backgroundColor = MaterialTheme.colors.primarySurface,
-                    topBar = { PosterAppBar() }
-                ) {
-                    Main(backDispatcher = onBackPressedDispatcher)
-                }
-            }
+    setContent {
+      DisneyComposeTheme {
+        Scaffold(
+          backgroundColor = MaterialTheme.colors.primarySurface,
+          topBar = { PosterAppBar() }
+        ) {
+          Main(backDispatcher = onBackPressedDispatcher)
         }
+      }
     }
+  }
 }
 
 @Composable
 fun PosterAppBar() {
-    TopAppBar(
-        elevation = 6.dp,
-        backgroundColor = purple200,
-        modifier = Modifier.height(58.dp)
-    ) {
-        Text(
-            modifier = Modifier
-                .padding(8.dp)
-                .align(Alignment.CenterVertically),
-            text = stringResource(R.string.app_name),
-            color = Color.White,
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold
-        )
-    }
+  TopAppBar(
+    elevation = 6.dp,
+    backgroundColor = purple200,
+    modifier = Modifier.height(58.dp)
+  ) {
+    Text(
+      modifier = Modifier
+        .padding(8.dp)
+        .align(Alignment.CenterVertically),
+      text = stringResource(R.string.app_name),
+      color = Color.White,
+      fontSize = 18.sp,
+      fontWeight = FontWeight.Bold
+    )
+  }
 }

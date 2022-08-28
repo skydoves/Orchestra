@@ -41,66 +41,66 @@ import com.skydoves.compose.orchestra.ui.navigation.Actions
 
 @Composable
 fun Home(actions: Actions, modifier: Modifier = Modifier) {
-    val items = remember { listOf("Balloon", "ColorPicker", "Spinner") }
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colors.background)
+  val items = remember { listOf("Balloon", "ColorPicker", "Spinner") }
+  Column(
+    modifier = modifier
+      .fillMaxSize()
+      .background(MaterialTheme.colors.background)
+  ) {
+    LazyColumn(
+      contentPadding = PaddingValues(4.dp)
     ) {
-        LazyColumn(
-            contentPadding = PaddingValues(4.dp)
-        ) {
-            items(
-                items = items,
-                itemContent = { item ->
-                    val selectItem: () -> Unit = when (item) {
-                        "Balloon" -> actions.selectOnBalloon
-                        "ColorPicker" -> actions.selectOnColorPicker
-                        "Spinner" -> actions.selectOnSpinner
-                        else -> {
-                            { }
-                        }
-                    }
-                    Item(
-                        modifier = modifier,
-                        title = item,
-                        selectItem = selectItem
-                    )
-                }
-            )
+      items(
+        items = items,
+        itemContent = { item ->
+          val selectItem: () -> Unit = when (item) {
+            "Balloon" -> actions.selectOnBalloon
+            "ColorPicker" -> actions.selectOnColorPicker
+            "Spinner" -> actions.selectOnSpinner
+            else -> {
+              { }
+            }
+          }
+          Item(
+            modifier = modifier,
+            title = item,
+            selectItem = selectItem
+          )
         }
+      )
     }
+  }
 }
 
 @Composable
 fun Item(
-    modifier: Modifier,
-    title: String,
-    selectItem: () -> Unit
+  modifier: Modifier,
+  title: String,
+  selectItem: () -> Unit
 ) {
-    Surface(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(6.dp)
-            .height(86.dp),
-        shape = RoundedCornerShape(8.dp)
+  Surface(
+    modifier = modifier
+      .fillMaxWidth()
+      .padding(6.dp)
+      .height(86.dp),
+    shape = RoundedCornerShape(8.dp)
+  ) {
+    ConstraintLayout(
+      modifier = Modifier
+        .background(purple200)
+        .clickable(onClick = { selectItem() })
     ) {
-        ConstraintLayout(
-            modifier = Modifier
-                .background(purple200)
-                .clickable(onClick = { selectItem() })
-        ) {
-            val titleRef = createRef()
-            Text(
-                text = title,
-                modifier = Modifier.constrainAs(titleRef) {
-                    centerVerticallyTo(parent)
-                    centerHorizontallyTo(parent)
-                },
-                style = MaterialTheme.typography.h2,
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 1
-            )
-        }
+      val titleRef = createRef()
+      Text(
+        text = title,
+        modifier = Modifier.constrainAs(titleRef) {
+          centerVerticallyTo(parent)
+          centerHorizontallyTo(parent)
+        },
+        style = MaterialTheme.typography.h2,
+        overflow = TextOverflow.Ellipsis,
+        maxLines = 1
+      )
     }
+  }
 }
