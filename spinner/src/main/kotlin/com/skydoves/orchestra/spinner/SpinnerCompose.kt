@@ -37,15 +37,9 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.LifecycleOwner
@@ -113,30 +107,11 @@ import com.skydoves.powerspinner.createPowerSpinnerView
 public fun <T> Spinner(
   modifier: Modifier = Modifier,
   text: String = "",
-  color: Color = Color.Unspecified,
-  fontSize: TextUnit = TextUnit.Unspecified,
-  fontStyle: FontStyle? = null,
-  fontWeight: FontWeight? = null,
-  fontFamily: FontFamily? = null,
-  letterSpacing: TextUnit = TextUnit.Unspecified,
-  textDecoration: TextDecoration? = null,
-  textAlign: TextAlign? = null,
-  popupWidth: Dp? = null,
-  popupHeight: Dp? = null,
-  itemHeight: Dp? = null,
-  lineHeight: TextUnit = TextUnit.Unspecified,
-  overflow: TextOverflow = TextOverflow.Clip,
-  softWrap: Boolean = true,
-  maxLines: Int = Int.MAX_VALUE,
+  properties: SpinnerProperties = SpinnerProperties(),
   onTextLayout: (TextLayoutResult) -> Unit = {},
-  style: TextStyle = LocalTextStyle.current,
   context: Context = LocalContext.current,
   lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
-  showDivider: Boolean = false,
-  dividerSize: Dp = 0.5.dp,
-  dividerColor: Color = Color.Unspecified,
-  spinnerPadding: Dp = 0.dp,
-  spinnerBackgroundColor: Color = Color.Unspecified,
+  style: TextStyle = LocalTextStyle.current,
   onSpinnerItemSelected: (Int, T) -> Unit = { _, _ -> },
   onSpinnerOutsideTouched: (View, MotionEvent) -> Unit = { _, _ -> },
   dismissWhenNotifiedItemSelected: Boolean = true,
@@ -145,41 +120,41 @@ public fun <T> Spinner(
   itemList: List<T> = listOf(),
   update: (PowerSpinnerView) -> Unit = {}
 ) {
-  val spinnerView = remember {
+  val spinnerView = remember(properties) {
     createPowerSpinnerView(context) {
       setShowArrow(false)
-      setShowDivider(showDivider)
-      setDividerColor(dividerColor.toArgb())
-      setDividerSize(context.dp2Px(dividerSize))
+      setShowDivider(properties.showDivider)
+      setDividerColor(properties.dividerColor.toArgb())
+      setDividerSize(context.dp2Px(properties.dividerSize))
       setLifecycleOwner(lifecycleOwner)
       setSpinnerPopupAnimation(spinnerAnimation)
-      setSpinnerPopupBackground(ColorDrawable(spinnerBackgroundColor.toArgb()))
+      setSpinnerPopupBackground(ColorDrawable(properties.spinnerBackgroundColor.toArgb()))
       setDismissWhenNotifiedItemSelected(dismissWhenNotifiedItemSelected)
       setOnSpinnerOutsideTouchListener { view, motionEvent ->
         onSpinnerOutsideTouched(view, motionEvent)
       }
-      popupWidth?.let { setSpinnerPopupWidth(context.dp2Px(it)) }
-      popupHeight?.let { setSpinnerPopupHeight(context.dp2Px(it)) }
-      itemHeight?.let { setSpinnerItemHeight(context.dp2Px(it)) }
+      properties.popupWidth?.let { setSpinnerPopupWidth(context.dp2Px(it)) }
+      properties.popupHeight?.let { setSpinnerPopupHeight(context.dp2Px(it)) }
+      properties.itemHeight?.let { setSpinnerItemHeight(context.dp2Px(it)) }
     }
   }
   with(spinnerView) {
     itemListRes?.let { setItems(it) } ?: setItems(itemList)
     setIsFocusable(true)
     setTextColor(
-      if (color != Color.Unspecified) {
-        color.toArgb()
+      if (properties.color != Color.Unspecified) {
+        properties.color.toArgb()
       } else {
         style.color.toArgb()
       }
     )
-    textSize = if (fontSize != TextUnit.Unspecified) {
-      fontSize.value
+    textSize = if (properties.fontSize != TextUnit.Unspecified) {
+      properties.fontSize.value
     } else {
       style.fontSize.value
     }
-    textAlign?.let { gravity = it.toGravity() }
-    val padding = spinnerPadding.value.toInt()
+    properties.textAlign?.let { gravity = it.toGravity() }
+    val padding = properties.spinnerPadding.value.toInt()
     setPadding(padding, padding, padding, padding)
     spinnerView.setDisableChangeTextWhenNotified(true)
     spinnerView.setOnSpinnerItemSelectedListener<T> { _, _, newPosition, newItem ->
@@ -199,30 +174,32 @@ public fun <T> Spinner(
     ) {
       update(it)
     }
-    Text(
-      AnnotatedString(text),
-      Modifier.constrainAs(spinnerText) {
-        start.linkTo(parent.start)
-        end.linkTo(parent.end)
-        top.linkTo(parent.top)
-        bottom.linkTo(parent.bottom)
-      },
-      color,
-      fontSize,
-      fontStyle,
-      fontWeight,
-      fontFamily,
-      letterSpacing,
-      textDecoration,
-      textAlign,
-      lineHeight,
-      overflow,
-      softWrap,
-      maxLines,
-      emptyMap(),
-      onTextLayout,
-      style
-    )
+    with(properties) {
+      Text(
+        AnnotatedString(text),
+        Modifier.constrainAs(spinnerText) {
+          start.linkTo(parent.start)
+          end.linkTo(parent.end)
+          top.linkTo(parent.top)
+          bottom.linkTo(parent.bottom)
+        },
+        color,
+        fontSize,
+        fontStyle,
+        fontWeight,
+        fontFamily,
+        letterSpacing,
+        textDecoration,
+        textAlign,
+        lineHeight,
+        overflow,
+        softWrap,
+        maxLines,
+        emptyMap(),
+        onTextLayout,
+        style
+      )
+    }
   }
 }
 

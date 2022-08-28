@@ -41,7 +41,6 @@ import com.skydoves.orchestra.colorpicker.AlphaSlideBar
 import com.skydoves.orchestra.colorpicker.AlphaTileBox
 import com.skydoves.orchestra.colorpicker.BrightnessSlideBar
 import com.skydoves.orchestra.colorpicker.ColorPicker
-import com.skydoves.orchestra.colorpicker.ColorPickerProperties
 
 @Composable
 fun ColorPickerDemo(modifier: Modifier = Modifier) {
@@ -64,7 +63,7 @@ fun ColorPickerDemo(modifier: Modifier = Modifier) {
         onColorListener = { envelope, _ ->
           setSelectedColor(envelope)
         },
-        properties = ColorPickerProperties(initialColor = purple500),
+        initialColor = purple500,
         children = { colorPickerView ->
           Column(modifier = Modifier.padding(top = 32.dp)) {
             Box(modifier = Modifier.padding(vertical = 6.dp)) {
