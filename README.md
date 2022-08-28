@@ -18,6 +18,9 @@
 </p>
 
 ## Balloon
+**Orchestra Balloon** allows you to build modernized and sophisticated tooltips, fully customizable with an arrow and animations for Jetpack Compose. This is a Jetpack Compose compatible package of [Balloon](https://github.com/skydoves/balloon).
+
+### Download
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/orchestra-balloon.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22orchestra-balloon%22)<br>
 
 Add the codes below to your **root** `build.gradle` file (not your module build.gradle file):
@@ -71,6 +74,10 @@ BalloonAnchor(
 ```
 
 ## ColorPicker
+**Orchestra ColorPicker** allows you to build color picker for getting colors from any images by tapping on the desired color for Jetpack Compose. This is a Jetpack Compose compatible package of [ColorPickerView](https://github.com/skydoves/colorpickerview).
+
+### Download
+
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/orchestra-colorpicker.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22orchestra-colorpicker%22)<br>
 Add the dependency below to your **module**'s `build.gradle` file:
 ```gradle
@@ -83,6 +90,7 @@ dependencies {
 
 ### Usage
 `ColorPicker` composable implements a color picker with `AlphaSlideBar` and `BrightnessSlideBar`. We can create an alpha sidebar and brightness sidebar for changing saturation and lightness by tapping on the desired color. They should be used in `children` inner composable in `ColorPicker`, and they receive a `colorPickerView` as a parameter.
+
 ```kotlin
 val (selectedColor, setSelectedColor) 
       = remember { mutableStateOf(ColorEnvelope(0)) }
@@ -127,6 +135,10 @@ AlphaTileBox(
 ```
 
 ## Spinner
+**Orchestra Spinner** allows you to build a lightweight dropdown popup spinner, fully customizable with an arrow and animations for Jetpack Compose. This is a Jetpack Compose compatible package of [PowerSpinner](https://github.com/skydoves/powerspinner).
+
+### Download
+
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/orchestra-spinner.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22orchestra-spinner%22)<br>
 Add the dependency below to your **module**'s `build.gradle` file:
 ```gradle
