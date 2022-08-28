@@ -74,5 +74,3 @@ dependencies {
   // compose image loading
   implementation Dependencies.landscapist
 }
-
-apply from: "$rootDir/spotless.gradle"

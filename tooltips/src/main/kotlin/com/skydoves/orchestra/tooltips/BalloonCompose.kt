@@ -19,7 +19,7 @@ package com.skydoves.orchestra.tooltips
 import android.content.Context
 import android.view.MotionEvent
 import android.view.View
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -63,12 +63,14 @@ public fun <T : Balloon.Factory> ConstraintLayoutScope.BalloonAnchor(
     lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
     anchor: View = remember { View(context) },
     onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
+    onAnchorLongClick: (Balloon, View) -> Unit = { _, _ -> },
     onBalloonClick: (View) -> Unit = { _ -> },
     onBalloonDismiss: () -> Unit = {},
     onBalloonInitialized: (View) -> Unit = { _ -> },
     onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
     onClickEnabled: Boolean = true,
     onClickLabel: String? = null,
+    onLongClickLabel: String? = null,
     role: Role? = null,
     update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
@@ -86,12 +88,14 @@ public fun <T : Balloon.Factory> ConstraintLayoutScope.BalloonAnchor(
         lifecycleOwner = lifecycleOwner,
         anchor = anchor,
         onAnchorClick = onAnchorClick,
+        onAnchorLongClick = onAnchorLongClick,
         onBalloonClick = onBalloonClick,
         onBalloonDismiss = onBalloonDismiss,
         onBalloonInitialized = onBalloonInitialized,
         onBalloonOutsideTouch = onBalloonOutsideTouch,
         onClickEnabled = onClickEnabled,
         onClickLabel = onClickLabel,
+        onLongClickLabel = onLongClickLabel,
         role = role,
         update = update
     )
@@ -128,12 +132,14 @@ public fun ConstraintLayoutScope.BalloonAnchor(
     context: Context = LocalContext.current,
     anchor: View = remember { View(context) },
     onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
+    onAnchorLongClick: (Balloon, View) -> Unit = { _, _ -> },
     onBalloonClick: (View) -> Unit = { _ -> },
     onBalloonDismiss: () -> Unit = {},
     onBalloonInitialized: (View) -> Unit = { _ -> },
     onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
     onClickEnabled: Boolean = true,
     onClickLabel: String? = null,
+    onLongClickLabel: String? = null,
     role: Role? = null,
     update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
@@ -150,12 +156,14 @@ public fun ConstraintLayoutScope.BalloonAnchor(
         context = context,
         anchor = anchor,
         onAnchorClick = onAnchorClick,
+        onAnchorLongClick = onAnchorLongClick,
         onBalloonClick = onBalloonClick,
         onBalloonDismiss = onBalloonDismiss,
         onBalloonInitialized = onBalloonInitialized,
         onBalloonOutsideTouch = onBalloonOutsideTouch,
         onClickEnabled = onClickEnabled,
         onClickLabel = onClickLabel,
+        onLongClickLabel = onLongClickLabel,
         role = role,
         update = update
     )
@@ -185,12 +193,14 @@ public fun <T : Balloon.Factory> BalloonAnchor(
     lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
     anchor: View = remember { View(context) },
     onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
+    onAnchorLongClick: (Balloon, View) -> Unit = { _, _ -> },
     onBalloonClick: (View) -> Unit = { _ -> },
     onBalloonDismiss: () -> Unit = {},
     onBalloonInitialized: (View) -> Unit = { _ -> },
     onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
     onClickEnabled: Boolean = true,
     onClickLabel: String? = null,
+    onLongClickLabel: String? = null,
     role: Role? = null,
     update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
@@ -202,12 +212,14 @@ public fun <T : Balloon.Factory> BalloonAnchor(
         context = context,
         anchor = anchor,
         onAnchorClick = onAnchorClick,
+        onAnchorLongClick = onAnchorLongClick,
         onBalloonClick = onBalloonClick,
         onBalloonDismiss = onBalloonDismiss,
         onBalloonInitialized = onBalloonInitialized,
         onBalloonOutsideTouch = onBalloonOutsideTouch,
         onClickEnabled = onClickEnabled,
         onClickLabel = onClickLabel,
+        onLongClickLabel = onLongClickLabel,
         role = role,
         update = update
     )
@@ -241,12 +253,14 @@ public fun BalloonAnchor(
     context: Context = LocalContext.current,
     anchor: View = remember { View(context) },
     onAnchorClick: (Balloon, View) -> Unit = { _, _ -> },
+    onAnchorLongClick: (Balloon, View) -> Unit = { _, _ -> },
     onBalloonClick: (View) -> Unit = { _ -> },
     onBalloonDismiss: () -> Unit = {},
     onBalloonInitialized: (View) -> Unit = { _ -> },
     onBalloonOutsideTouch: (View, MotionEvent) -> Unit = { _, _ -> },
     onClickEnabled: Boolean = true,
     onClickLabel: String? = null,
+    onLongClickLabel: String? = null,
     role: Role? = null,
     update: (Balloon, View) -> Unit = { _, _ -> }
 ) {
@@ -262,11 +276,13 @@ public fun BalloonAnchor(
     AndroidView(
         factory = { anchor },
         modifier = Modifier
-            .clickable(
+            .combinedClickable(
                 enabled = onClickEnabled,
-                onClickLabel = onClickLabel,
+                onClick = { onAnchorClick(balloon, anchor) },
+                onLongClick = { onAnchorLongClick(balloon, anchor) },
                 role = role,
-                onClick = { onAnchorClick(balloon, anchor) }
+                onClickLabel = onClickLabel,
+                onLongClickLabel = onLongClickLabel
             )
             .then(modifier)
     ) {
