@@ -30,3 +30,7 @@ public final class com/skydoves/orchestra/colorpicker/ColorPickerProperties {
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/skydoves/orchestra/colorpicker/LocalColorPickerPropertiesProviderKt {
+	public static final fun getLocalColorPickerProperties ()Landroidx/compose/runtime/ProvidableCompositionLocal;
+}
+
