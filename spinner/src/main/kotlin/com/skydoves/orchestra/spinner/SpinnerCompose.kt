@@ -89,14 +89,19 @@ import com.skydoves.powerspinner.createPowerSpinnerView
  *        .background(amber700)
  *        .align(Alignment.CenterHorizontally),
  *      itemList = coffeeList,
- *      color = Color.White,
  *      style = MaterialTheme.typography.body2,
- *      textAlign = TextAlign.Center,
- *      dividerColor = white87,
- *      overflow = TextOverflow.Ellipsis,
- *      maxLines = 1,
- *      spinnerPadding = 16.dp,
- *      spinnerBackgroundColor = MaterialTheme.colors.onBackground,
+ *      properties = SpinnerProperties(
+ *        color = Color.White,
+ *        textAlign = TextAlign.Center,
+ *        itemHeight = 46.dp,
+ *        showDivider = true,
+ *        dividerColor = white87,
+ *        overflow = TextOverflow.Ellipsis,
+ *        maxLines = 1,
+ *        spinnerPadding = 16.dp,
+ *        spinnerBackgroundColor = MaterialTheme.colors.onBackground
+ *      ),
+ *
  *      onSpinnerItemSelected = { index, item ->
  *        setSelectedItem1(item)
  *      }

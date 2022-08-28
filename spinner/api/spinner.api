@@ -1,3 +1,7 @@
+public final class com/skydoves/orchestra/spinner/LocalSpinnerPropertiesProviderKt {
+	public static final fun getLocalSpinnerProperties ()Landroidx/compose/runtime/ProvidableCompositionLocal;
+}
+
 public final class com/skydoves/orchestra/spinner/Spinner {
 	public static final fun Spinner (Landroidx/compose/ui/Modifier;Ljava/lang/String;Lcom/skydoves/orchestra/spinner/SpinnerProperties;Lkotlin/jvm/functions/Function1;Landroid/content/Context;Landroidx/lifecycle/LifecycleOwner;Landroidx/compose/ui/text/TextStyle;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;ZLcom/skydoves/powerspinner/SpinnerAnimation;Ljava/lang/Integer;Ljava/util/List;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
 }
