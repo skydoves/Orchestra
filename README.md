@@ -31,7 +31,7 @@ allprojects {
 Next, add the dependency below to your **module**'s `build.gradle` file:
 ```gradle
 dependencies {
-    implementation "com.github.skydoves:orchestra-balloon:1.1.5"
+    implementation "com.github.skydoves:orchestra-balloon:1.2.0"
 }
 ```
 
@@ -149,15 +149,17 @@ dependencies {
         .background(blue200)
         .align(Alignment.CenterHorizontally),
        itemListRes = R.array.list_spinner,
-      color = Color.White,
       style = MaterialTheme.typography.body2,
-      textAlign = TextAlign.Center,
-      showDivider = true,
-      dividerColor = white87,
-      overflow = TextOverflow.Ellipsis,
-      maxLines = 1,
-      spinnerPadding = 16.dp,
-      spinnerBackgroundColor = MaterialTheme.colors.onBackground,
+      properties = SpinnerProperties(
+        color = Color.White,
+        textAlign = TextAlign.Center,
+        showDivider = true,
+        dividerColor = white87,
+        overflow = TextOverflow.Ellipsis,
+        maxLines = 1,
+        spinnerPadding = 16.dp,
+        spinnerBackgroundColor = MaterialTheme.colors.onBackground,
+      ),
       onSpinnerItemSelected = { index, item ->
         setSelectedItem(item)
       }
@@ -174,14 +176,16 @@ Here is an another example using a List for creating a spinner. In this case, we
         .background(amber700)
         .align(Alignment.CenterHorizontally),
       itemList = coffeeList,
-      color = Color.White,
       style = MaterialTheme.typography.body2,
-      textAlign = TextAlign.Center,
-      dividerColor = white87,
-      overflow = TextOverflow.Ellipsis,
-      maxLines = 1,
-      spinnerPadding = 16.dp,
-      spinnerBackgroundColor = MaterialTheme.colors.onBackground,
+      properties = SpinnerProperties(
+        color = Color.White,
+        textAlign = TextAlign.Center,
+        dividerColor = white87,
+        overflow = TextOverflow.Ellipsis,
+        maxLines = 1,
+        spinnerPadding = 16.dp,
+        spinnerBackgroundColor = MaterialTheme.colors.onBackground,
+      ),
       onSpinnerItemSelected = { index, item ->
         setSelectedItem1(item)
       }
