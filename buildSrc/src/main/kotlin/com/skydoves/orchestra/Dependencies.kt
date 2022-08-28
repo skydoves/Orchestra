@@ -1,28 +1,28 @@
 package com.skydoves.orchestra
 
 object Versions {
-  internal const val ANDROID_GRADLE_PLUGIN = "7.2.0"
+  internal const val ANDROID_GRADLE_PLUGIN = "7.2.1"
   internal const val ANDROID_GRADLE_SPOTLESS = "6.3.0"
   internal const val GRADLE_NEXUS_PUBLISH_PLUGIN = "1.1.0"
-  internal const val KOTLIN = "1.7.0"
-  internal const val KOTLIN_GRADLE_DOKKA = "1.7.0"
-  internal const val KOTLIN_BINARY_VALIDATOR = "0.10.1"
+  internal const val KOTLIN = "1.7.10"
+  internal const val KOTLIN_GRADLE_DOKKA = "1.7.10"
+  internal const val KOTLIN_BINARY_VALIDATOR = "0.11.0"
 
   internal const val APPCOMPAT = "1.4.1"
   internal const val MATERIAL = "1.6.0"
   internal const val CORE_KTX = "1.7.0"
   internal const val LIFECYCLE = "2.4.1"
 
-  internal const val COMPOSE = "1.3.0-alpha01"
-  internal const val COMPOSE_COMPILER = "1.2.0"
-  internal const val COMPOSE_CONSTRAINT = "1.0.0-alpha07"
+  internal const val COMPOSE = "1.3.0-beta01"
+  internal const val COMPOSE_COMPILER = "1.3.0"
+  internal const val COMPOSE_CONSTRAINT = "1.0.1"
   internal const val COMPOSE_ACTIVITY = "1.4.0"
 
-  internal const val BALLOON = "1.4.6"
+  internal const val BALLOON = "1.4.7"
   internal const val COLORPICKERVIEW = "2.2.4"
-  internal const val POWERSPINNER = "1.2.3"
+  internal const val POWERSPINNER = "1.2.4"
 
-  internal const val LANDSCAPIST = "1.5.3"
+  internal const val LANDSCAPIST = "1.6.1"
 }
 
 object Dependencies {
