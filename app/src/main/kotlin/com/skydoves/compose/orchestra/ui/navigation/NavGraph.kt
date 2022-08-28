@@ -24,34 +24,34 @@ import kotlinx.parcelize.Parcelize
  */
 sealed class Destination : Parcelable {
 
-    @Parcelize
-    object Home : Destination()
+  @Parcelize
+  object Home : Destination()
 
-    @Parcelize
-    object BalloonDemo : Destination()
+  @Parcelize
+  object BalloonDemo : Destination()
 
-    @Parcelize
-    object ColorPickerDemo : Destination()
+  @Parcelize
+  object ColorPickerDemo : Destination()
 
-    @Parcelize
-    object SpinnerDemo : Destination()
+  @Parcelize
+  object SpinnerDemo : Destination()
 }
 
 class Actions(navigator: Navigator<Destination>) {
 
-    val selectOnBalloon: () -> Unit = {
-        navigator.navigate(Destination.BalloonDemo)
-    }
+  val selectOnBalloon: () -> Unit = {
+    navigator.navigate(Destination.BalloonDemo)
+  }
 
-    val selectOnColorPicker: () -> Unit = {
-        navigator.navigate(Destination.ColorPickerDemo)
-    }
+  val selectOnColorPicker: () -> Unit = {
+    navigator.navigate(Destination.ColorPickerDemo)
+  }
 
-    val selectOnSpinner: () -> Unit = {
-        navigator.navigate(Destination.SpinnerDemo)
-    }
+  val selectOnSpinner: () -> Unit = {
+    navigator.navigate(Destination.SpinnerDemo)
+  }
 
-    val pressOnBack: () -> Unit = {
-        navigator.back()
-    }
+  val pressOnBack: () -> Unit = {
+    navigator.back()
+  }
 }

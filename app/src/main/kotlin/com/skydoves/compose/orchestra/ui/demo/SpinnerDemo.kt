@@ -37,57 +37,66 @@ import com.skydoves.compose.orchestra.theme.amber700
 import com.skydoves.compose.orchestra.theme.blue200
 import com.skydoves.compose.orchestra.theme.white87
 import com.skydoves.orchestra.spinner.Spinner
+import com.skydoves.orchestra.spinner.SpinnerProperties
 
 @Composable
 fun SpinnerDemo(modifier: Modifier = Modifier) {
-    Surface(
-        color = MaterialTheme.colors.background,
-        modifier = modifier.fillMaxSize()
-    ) {
-        Column(modifier = modifier.padding(4.dp)) {
-            val (selectedItem0, setSelectedItem0) = remember { mutableStateOf("Choose a question") }
-            Spinner<String>(
-                text = selectedItem0,
-                modifier = Modifier.fillMaxWidth().padding(16.dp)
-                    .background(blue200)
-                    .align(Alignment.CenterHorizontally),
-                itemListRes = R.array.list_spinner,
-                color = Color.White,
-                style = MaterialTheme.typography.body2,
-                textAlign = TextAlign.Center,
-                itemHeight = 46.dp,
-                showDivider = true,
-                dividerColor = white87,
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 1,
-                spinnerPadding = 16.dp,
-                spinnerBackgroundColor = MaterialTheme.colors.onBackground,
-                onSpinnerItemSelected = { index, item ->
-                    setSelectedItem0(item)
-                }
-            )
-
-            val coffeeList = remember { listOf("Americano", "Cold Brew", "Espresso", "Latte") }
-            val (selectedItem1, setSelectedItem1) = remember { mutableStateOf("Choose your coffee") }
-            Spinner(
-                text = selectedItem1,
-                modifier = Modifier.fillMaxWidth().padding(16.dp)
-                    .background(amber700)
-                    .align(Alignment.CenterHorizontally),
-                itemList = coffeeList,
-                color = Color.White,
-                itemHeight = 46.dp,
-                style = MaterialTheme.typography.body2,
-                textAlign = TextAlign.Center,
-                dividerColor = white87,
-                overflow = TextOverflow.Ellipsis,
-                maxLines = 1,
-                spinnerPadding = 16.dp,
-                spinnerBackgroundColor = MaterialTheme.colors.onBackground,
-                onSpinnerItemSelected = { index, item ->
-                    setSelectedItem1(item)
-                }
-            )
+  Surface(
+    color = MaterialTheme.colors.background,
+    modifier = modifier.fillMaxSize()
+  ) {
+    Column(modifier = modifier.padding(4.dp)) {
+      val (selectedItem0, setSelectedItem0) = remember { mutableStateOf("Choose a question") }
+      Spinner<String>(
+        text = selectedItem0,
+        modifier = Modifier
+          .fillMaxWidth()
+          .padding(16.dp)
+          .background(blue200)
+          .align(Alignment.CenterHorizontally),
+        itemListRes = R.array.list_spinner,
+        style = MaterialTheme.typography.body2,
+        properties = SpinnerProperties(
+          color = Color.White,
+          textAlign = TextAlign.Center,
+          itemHeight = 46.dp,
+          showDivider = true,
+          dividerColor = white87,
+          overflow = TextOverflow.Ellipsis,
+          maxLines = 1,
+          spinnerPadding = 16.dp,
+          spinnerBackgroundColor = MaterialTheme.colors.onBackground
+        ),
+        onSpinnerItemSelected = { index, item ->
+          setSelectedItem0(item)
         }
+      )
+
+      val coffeeList = remember { listOf("Americano", "Cold Brew", "Espresso", "Latte") }
+      val (selectedItem1, setSelectedItem1) = remember { mutableStateOf("Choose your coffee") }
+      Spinner(
+        text = selectedItem1,
+        modifier = Modifier
+          .fillMaxWidth()
+          .padding(16.dp)
+          .background(amber700)
+          .align(Alignment.CenterHorizontally),
+        itemList = coffeeList,
+        style = MaterialTheme.typography.body2,
+        properties = SpinnerProperties(
+          color = Color.White,
+          itemHeight = 46.dp,
+          textAlign = TextAlign.Center,
+          dividerColor = white87,
+          overflow = TextOverflow.Ellipsis,
+          maxLines = 1,
+          spinnerPadding = 16.dp,
+          spinnerBackgroundColor = MaterialTheme.colors.onBackground
+        ),
+        onSpinnerItemSelected = { index, item ->
+          setSelectedItem1(item)
+        }
+      )
     }
+  }
 }

@@ -20,8 +20,6 @@
 package com.skydoves.orchestra.colorpicker
 
 import android.content.Context
-import android.graphics.Point
-import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
 import androidx.annotation.FloatRange
 import androidx.compose.foundation.layout.Column
@@ -34,7 +32,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import com.skydoves.colorpickerview.ActionMode
 import com.skydoves.colorpickerview.AlphaTileView
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.ColorPickerView
@@ -79,53 +76,47 @@ import com.skydoves.colorpickerview.sliders.BrightnessSlideBar
  */
 @Composable
 public fun ColorPicker(
-    modifier: Modifier = Modifier,
-    context: Context = LocalContext.current,
-    onColorListener: (ColorEnvelope, Boolean) -> Unit,
-    palette: Drawable? = null,
-    selector: Drawable? = null,
-    flagView: FlagView? = BubbleFlag(context),
-    actionMode: ActionMode = ActionMode.ALWAYS,
-    debounceDuration: Int = 0,
-    selectorSize: Dp = 12.dp,
-    selectorPoint: Point? = null,
-    @FloatRange(from = 0.0, to = 1.0) selectorAlpha: Float = 1.0f,
-    initialColor: Color? = null,
-    children: @Composable (ColorPickerView) -> Unit,
-    update: (ColorPickerView) -> Unit = {}
+  modifier: Modifier = Modifier,
+  context: Context = LocalContext.current,
+  properties: ColorPickerProperties = ColorPickerProperties(),
+  onColorListener: (ColorEnvelope, Boolean) -> Unit,
+  flagView: FlagView? = BubbleFlag(context),
+  initialColor: Color? = null,
+  children: @Composable (ColorPickerView) -> Unit,
+  update: (ColorPickerView) -> Unit = {}
 ) {
-    val colorPickerView = remember {
-        ColorPickerView.Builder(context)
-            .setActionMode(actionMode)
-            .setSelectorAlpha(selectorAlpha)
-            .setSelectorSize(context.dp2Px(selectorSize))
-            .setDebounceDuration(debounceDuration)
-            .setColorListener(
-                ColorEnvelopeListener { colorEnvelope, fromUser ->
-                    onColorListener(colorEnvelope, fromUser)
-                }
-            ).build().apply {
-                post {
-                    selector?.let { setSelectorDrawable(it) }
-                    flagView?.let { setFlagView(it) }
-                    initialColor?.let { setInitialColor(initialColor.toArgb()) }
-                    palette?.let { setPaletteDrawable(it) } ?: setHsvPaletteDrawable()
-                    selectorPoint?.let { setSelectorPoint(it.x, it.y) }
-                        ?: selectCenter()
-                }
-            }
-    }
-    Column {
-        AndroidView(
-            factory = { colorPickerView },
-            modifier = modifier
-        ) {
-            it.post {
-                update(it)
-            }
+  val colorPickerView = remember(properties) {
+    ColorPickerView.Builder(context)
+      .setActionMode(properties.actionMode)
+      .setSelectorAlpha(properties.selectorAlpha)
+      .setSelectorSize(context.dp2Px(properties.selectorSize))
+      .setDebounceDuration(properties.debounceDuration)
+      .setColorListener(
+        ColorEnvelopeListener { colorEnvelope, fromUser ->
+          onColorListener(colorEnvelope, fromUser)
         }
-        children(colorPickerView)
+      ).build().apply {
+        post {
+          flagView?.let { setFlagView(it) }
+          initialColor?.let { setInitialColor(initialColor.toArgb()) }
+          properties.selector?.let { setSelectorDrawable(it) }
+          properties.palette?.let { setPaletteDrawable(it) } ?: setHsvPaletteDrawable()
+          properties.selectorPoint?.let { setSelectorPoint(it.x, it.y) }
+            ?: selectCenter()
+        }
+      }
+  }
+  Column {
+    AndroidView(
+      factory = { colorPickerView },
+      modifier = modifier
+    ) {
+      it.post {
+        update(it)
+      }
     }
+    children(colorPickerView)
+  }
 }
 
 /**
@@ -155,30 +146,30 @@ public fun ColorPicker(
  */
 @Composable
 public fun AlphaSlideBar(
-    modifier: Modifier = Modifier,
-    context: Context = LocalContext.current,
-    colorPickerView: ColorPickerView,
-    @FloatRange(from = 0.0, to = 1.0) selectedPosition: Float = 1.0f,
-    @DrawableRes selector: Int = R.drawable.wheel,
-    borderColor: Color = Color.Unspecified,
-    borderSize: Dp = 0.dp,
-    update: (AlphaSlideBar) -> Unit = {}
+  modifier: Modifier = Modifier,
+  context: Context = LocalContext.current,
+  colorPickerView: ColorPickerView,
+  @FloatRange(from = 0.0, to = 1.0) selectedPosition: Float = 1.0f,
+  @DrawableRes selector: Int = R.drawable.wheel,
+  borderColor: Color = Color.Unspecified,
+  borderSize: Dp = 0.dp,
+  update: (AlphaSlideBar) -> Unit = {}
 ) {
-    val alphaSlideBar = remember {
-        AlphaSlideBar(context).apply {
-            post { setSelectorPosition(selectedPosition) }
-        }
+  val alphaSlideBar = remember {
+    AlphaSlideBar(context).apply {
+      post { setSelectorPosition(selectedPosition) }
     }
-    AndroidView(
-        factory = { alphaSlideBar },
-        modifier = modifier
-    ) {
-        it.setSelectorDrawableRes(selector)
-        it.setBorderColor(borderColor.toArgb())
-        it.setBorderSize(context.dp2Px(borderSize))
-        colorPickerView.attachAlphaSlider(it)
-        update(it)
-    }
+  }
+  AndroidView(
+    factory = { alphaSlideBar },
+    modifier = modifier
+  ) {
+    it.setSelectorDrawableRes(selector)
+    it.setBorderColor(borderColor.toArgb())
+    it.setBorderSize(context.dp2Px(borderSize))
+    colorPickerView.attachAlphaSlider(it)
+    update(it)
+  }
 }
 
 /**
@@ -208,30 +199,30 @@ public fun AlphaSlideBar(
  */
 @Composable
 public fun BrightnessSlideBar(
-    modifier: Modifier = Modifier,
-    context: Context = LocalContext.current,
-    colorPickerView: ColorPickerView,
-    @FloatRange(from = 0.0, to = 1.0) selectedPosition: Float = 1.0f,
-    @DrawableRes selector: Int = R.drawable.wheel,
-    borderColor: Color = Color.Unspecified,
-    borderSize: Dp = 0.dp,
-    update: (BrightnessSlideBar) -> Unit = {}
+  modifier: Modifier = Modifier,
+  context: Context = LocalContext.current,
+  colorPickerView: ColorPickerView,
+  @FloatRange(from = 0.0, to = 1.0) selectedPosition: Float = 1.0f,
+  @DrawableRes selector: Int = R.drawable.wheel,
+  borderColor: Color = Color.Unspecified,
+  borderSize: Dp = 0.dp,
+  update: (BrightnessSlideBar) -> Unit = {}
 ) {
-    val brightnessSlideBar = remember {
-        BrightnessSlideBar(context).apply {
-            post { setSelectorPosition(selectedPosition) }
-        }
+  val brightnessSlideBar = remember {
+    BrightnessSlideBar(context).apply {
+      post { setSelectorPosition(selectedPosition) }
     }
-    AndroidView(
-        factory = { brightnessSlideBar },
-        modifier = modifier
-    ) {
-        it.setSelectorDrawableRes(selector)
-        it.setBorderColor(borderColor.toArgb())
-        it.setBorderSize(context.dp2Px(borderSize))
-        colorPickerView.attachBrightnessSlider(it)
-        update(it)
-    }
+  }
+  AndroidView(
+    factory = { brightnessSlideBar },
+    modifier = modifier
+  ) {
+    it.setSelectorDrawableRes(selector)
+    it.setBorderColor(borderColor.toArgb())
+    it.setBorderSize(context.dp2Px(borderSize))
+    colorPickerView.attachBrightnessSlider(it)
+    update(it)
+  }
 }
 
 /*
@@ -250,20 +241,20 @@ public fun BrightnessSlideBar(
  */
 @Composable
 public fun AlphaTileBox(
-    modifier: Modifier = Modifier,
-    context: Context = LocalContext.current,
-    update: (AlphaTileView) -> Unit = {}
+  modifier: Modifier = Modifier,
+  context: Context = LocalContext.current,
+  update: (AlphaTileView) -> Unit = {}
 ) {
-    val alphaTileView = remember { AlphaTileView(context) }
-    AndroidView(
-        factory = { alphaTileView },
-        modifier = modifier
-    ) {
-        update(it)
-    }
+  val alphaTileView = remember { AlphaTileView(context) }
+  AndroidView(
+    factory = { alphaTileView },
+    modifier = modifier
+  ) {
+    update(it)
+  }
 }
 
 private fun Context.dp2Px(dp: Dp): Int {
-    val scale = resources.displayMetrics.density
-    return (dp.value * scale).toInt()
+  val scale = resources.displayMetrics.density
+  return (dp.value * scale).toInt()
 }

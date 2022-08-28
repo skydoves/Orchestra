@@ -27,28 +27,28 @@ import com.skydoves.compose.orchestra.R
 
 object BalloonUtils {
 
-    fun getTitleBalloon(context: Context, title: String, lifecycle: LifecycleOwner?): Balloon {
-        val textForm = textForm(context) {
-            setText(title)
-            setTextSize(15f)
-            setTextColorResource(R.color.white)
-        }
-
-        return createBalloon(context) {
-            setArrowSize(10)
-            setArrowPosition(0.5f)
-            setArrowOrientationRules(ArrowOrientationRules.ALIGN_ANCHOR)
-            setPadding(10)
-            setCornerRadius(8f)
-            setElevation(4)
-            setAlpha(0.85f)
-            setTextForm(textForm)
-            setBackgroundColorResource(R.color.purple_500)
-            setDismissWhenClicked(true)
-            setDismissWhenShowAgain(true)
-            setBalloonAnimation(BalloonAnimation.ELASTIC)
-            setLifecycleOwner(lifecycle)
-            build()
-        }
+  fun getTitleBalloon(context: Context, title: String, lifecycle: LifecycleOwner?): Balloon {
+    val textForm = textForm(context) {
+      setText(title)
+      setTextSize(15f)
+      setTextColorResource(R.color.white)
     }
+
+    return createBalloon(context) {
+      setArrowSize(10)
+      setArrowPosition(0.5f)
+      setArrowOrientationRules(ArrowOrientationRules.ALIGN_ANCHOR)
+      setPadding(10)
+      setCornerRadius(8f)
+      setElevation(4)
+      setAlpha(0.85f)
+      setTextForm(textForm)
+      setBackgroundColorResource(R.color.purple_500)
+      setDismissWhenClicked(true)
+      setDismissWhenShowAgain(true)
+      setBalloonAnimation(BalloonAnimation.ELASTIC)
+      setLifecycleOwner(lifecycle)
+      build()
+    }
+  }
 }

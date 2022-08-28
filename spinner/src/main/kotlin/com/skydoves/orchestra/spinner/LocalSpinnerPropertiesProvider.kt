@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package com.skydoves.compose.orchestra.model
+package com.skydoves.orchestra.spinner
 
-import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.ProvidableCompositionLocal
+import androidx.compose.runtime.staticCompositionLocalOf
 
-@Immutable
-data class Poster(
-  val name: String,
-  val release: String,
-  val playtime: String,
-  val description: String,
-  val poster: String
-)
+/**
+ * Local containing the preferred [SpinnerProperties] for providing the same instance
+ * in our composable hierarchy.
+ */
+public val LocalSpinnerProperties: ProvidableCompositionLocal<SpinnerProperties?> =
+  staticCompositionLocalOf { null }

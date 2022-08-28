@@ -2,6 +2,35 @@ public final class com/skydoves/orchestra/colorpicker/ColorPicker {
 	public static final fun AlphaSlideBar-wyJVWrg (Landroidx/compose/ui/Modifier;Landroid/content/Context;Lcom/skydoves/colorpickerview/ColorPickerView;FIJFLkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
 	public static final fun AlphaTileBox (Landroidx/compose/ui/Modifier;Landroid/content/Context;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
 	public static final fun BrightnessSlideBar-wyJVWrg (Landroidx/compose/ui/Modifier;Landroid/content/Context;Lcom/skydoves/colorpickerview/ColorPickerView;FIJFLkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
-	public static final fun ColorPicker-gzOsVxs (Landroidx/compose/ui/Modifier;Landroid/content/Context;Lkotlin/jvm/functions/Function2;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Lcom/skydoves/colorpickerview/flag/FlagView;Lcom/skydoves/colorpickerview/ActionMode;IFLandroid/graphics/Point;FLandroidx/compose/ui/graphics/Color;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
+	public static final fun ColorPicker-cE-mTA8 (Landroidx/compose/ui/Modifier;Landroid/content/Context;Lcom/skydoves/orchestra/colorpicker/ColorPickerProperties;Lkotlin/jvm/functions/Function2;Lcom/skydoves/colorpickerview/flag/FlagView;Landroidx/compose/ui/graphics/Color;Lkotlin/jvm/functions/Function3;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;II)V
+}
+
+public final class com/skydoves/orchestra/colorpicker/ColorPickerProperties {
+	public static final field $stable I
+	public synthetic fun <init> (Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Lcom/skydoves/colorpickerview/ActionMode;IFLandroid/graphics/Point;FILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Lcom/skydoves/colorpickerview/ActionMode;IFLandroid/graphics/Point;FLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Landroid/graphics/drawable/Drawable;
+	public final fun component2 ()Landroid/graphics/drawable/Drawable;
+	public final fun component3 ()Lcom/skydoves/colorpickerview/ActionMode;
+	public final fun component4 ()I
+	public final fun component5-D9Ej5fM ()F
+	public final fun component6 ()Landroid/graphics/Point;
+	public final fun component7 ()F
+	public final fun copy-3xixttE (Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Lcom/skydoves/colorpickerview/ActionMode;IFLandroid/graphics/Point;F)Lcom/skydoves/orchestra/colorpicker/ColorPickerProperties;
+	public static synthetic fun copy-3xixttE$default (Lcom/skydoves/orchestra/colorpicker/ColorPickerProperties;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Lcom/skydoves/colorpickerview/ActionMode;IFLandroid/graphics/Point;FILjava/lang/Object;)Lcom/skydoves/orchestra/colorpicker/ColorPickerProperties;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getActionMode ()Lcom/skydoves/colorpickerview/ActionMode;
+	public final fun getDebounceDuration ()I
+	public final fun getPalette ()Landroid/graphics/drawable/Drawable;
+	public final fun getSelector ()Landroid/graphics/drawable/Drawable;
+	public final fun getSelectorAlpha ()F
+	public final fun getSelectorPoint ()Landroid/graphics/Point;
+	public final fun getSelectorSize-D9Ej5fM ()F
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/skydoves/orchestra/colorpicker/LocalColorPickerPropertiesProviderKt {
+	public static final fun getLocalColorPickerProperties ()Landroidx/compose/runtime/ProvidableCompositionLocal;
 }
 

@@ -1,4 +1,59 @@
+public final class com/skydoves/orchestra/spinner/LocalSpinnerPropertiesProviderKt {
+	public static final fun getLocalSpinnerProperties ()Landroidx/compose/runtime/ProvidableCompositionLocal;
+}
+
 public final class com/skydoves/orchestra/spinner/Spinner {
-	public static final fun Spinner-2Ly11n0 (Landroidx/compose/ui/Modifier;Ljava/lang/String;JJLandroidx/compose/ui/text/font/FontStyle;Landroidx/compose/ui/text/font/FontWeight;Landroidx/compose/ui/text/font/FontFamily;JLandroidx/compose/ui/text/style/TextDecoration;Landroidx/compose/ui/text/style/TextAlign;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/unit/Dp;JIZILkotlin/jvm/functions/Function1;Landroidx/compose/ui/text/TextStyle;Landroid/content/Context;Landroidx/lifecycle/LifecycleOwner;ZFJFJLkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;ZLcom/skydoves/powerspinner/SpinnerAnimation;Ljava/lang/Integer;Ljava/util/List;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;IIIIII)V
+	public static final fun Spinner (Landroidx/compose/ui/Modifier;Ljava/lang/String;Lcom/skydoves/orchestra/spinner/SpinnerProperties;Lkotlin/jvm/functions/Function1;Landroid/content/Context;Landroidx/lifecycle/LifecycleOwner;Landroidx/compose/ui/text/TextStyle;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;ZLcom/skydoves/powerspinner/SpinnerAnimation;Ljava/lang/Integer;Ljava/util/List;Lkotlin/jvm/functions/Function1;Landroidx/compose/runtime/Composer;III)V
+}
+
+public final class com/skydoves/orchestra/spinner/SpinnerProperties {
+	public static final field $stable I
+	public synthetic fun <init> (JJLandroidx/compose/ui/text/font/FontStyle;Landroidx/compose/ui/text/font/FontWeight;Landroidx/compose/ui/text/font/FontFamily;JLandroidx/compose/ui/text/style/TextDecoration;Landroidx/compose/ui/text/style/TextAlign;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/unit/Dp;JIZIZFJFJILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (JJLandroidx/compose/ui/text/font/FontStyle;Landroidx/compose/ui/text/font/FontWeight;Landroidx/compose/ui/text/font/FontFamily;JLandroidx/compose/ui/text/style/TextDecoration;Landroidx/compose/ui/text/style/TextAlign;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/unit/Dp;JIZIZFJFJLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1-0d7_KjU ()J
+	public final fun component10-lTKBWiU ()Landroidx/compose/ui/unit/Dp;
+	public final fun component11-lTKBWiU ()Landroidx/compose/ui/unit/Dp;
+	public final fun component12-XSAIIZE ()J
+	public final fun component13-gIe3tQ8 ()I
+	public final fun component14 ()Z
+	public final fun component15 ()I
+	public final fun component16 ()Z
+	public final fun component17-D9Ej5fM ()F
+	public final fun component18-0d7_KjU ()J
+	public final fun component19-D9Ej5fM ()F
+	public final fun component2-XSAIIZE ()J
+	public final fun component20-0d7_KjU ()J
+	public final fun component3-4Lr2A7w ()Landroidx/compose/ui/text/font/FontStyle;
+	public final fun component4 ()Landroidx/compose/ui/text/font/FontWeight;
+	public final fun component5 ()Landroidx/compose/ui/text/font/FontFamily;
+	public final fun component6-XSAIIZE ()J
+	public final fun component7 ()Landroidx/compose/ui/text/style/TextDecoration;
+	public final fun component8-buA522U ()Landroidx/compose/ui/text/style/TextAlign;
+	public final fun component9-lTKBWiU ()Landroidx/compose/ui/unit/Dp;
+	public final fun copy-XcCoQ3g (JJLandroidx/compose/ui/text/font/FontStyle;Landroidx/compose/ui/text/font/FontWeight;Landroidx/compose/ui/text/font/FontFamily;JLandroidx/compose/ui/text/style/TextDecoration;Landroidx/compose/ui/text/style/TextAlign;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/unit/Dp;JIZIZFJFJ)Lcom/skydoves/orchestra/spinner/SpinnerProperties;
+	public static synthetic fun copy-XcCoQ3g$default (Lcom/skydoves/orchestra/spinner/SpinnerProperties;JJLandroidx/compose/ui/text/font/FontStyle;Landroidx/compose/ui/text/font/FontWeight;Landroidx/compose/ui/text/font/FontFamily;JLandroidx/compose/ui/text/style/TextDecoration;Landroidx/compose/ui/text/style/TextAlign;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/unit/Dp;Landroidx/compose/ui/unit/Dp;JIZIZFJFJILjava/lang/Object;)Lcom/skydoves/orchestra/spinner/SpinnerProperties;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getColor-0d7_KjU ()J
+	public final fun getDividerColor-0d7_KjU ()J
+	public final fun getDividerSize-D9Ej5fM ()F
+	public final fun getFontFamily ()Landroidx/compose/ui/text/font/FontFamily;
+	public final fun getFontSize-XSAIIZE ()J
+	public final fun getFontStyle-4Lr2A7w ()Landroidx/compose/ui/text/font/FontStyle;
+	public final fun getFontWeight ()Landroidx/compose/ui/text/font/FontWeight;
+	public final fun getItemHeight-lTKBWiU ()Landroidx/compose/ui/unit/Dp;
+	public final fun getLetterSpacing-XSAIIZE ()J
+	public final fun getLineHeight-XSAIIZE ()J
+	public final fun getMaxLines ()I
+	public final fun getOverflow-gIe3tQ8 ()I
+	public final fun getPopupHeight-lTKBWiU ()Landroidx/compose/ui/unit/Dp;
+	public final fun getPopupWidth-lTKBWiU ()Landroidx/compose/ui/unit/Dp;
+	public final fun getShowDivider ()Z
+	public final fun getSoftWrap ()Z
+	public final fun getSpinnerBackgroundColor-0d7_KjU ()J
+	public final fun getSpinnerPadding-D9Ej5fM ()F
+	public final fun getTextAlign-buA522U ()Landroidx/compose/ui/text/style/TextAlign;
+	public final fun getTextDecoration ()Landroidx/compose/ui/text/style/TextDecoration;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
