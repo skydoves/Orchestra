@@ -150,7 +150,7 @@ dependencies {
 <img src="https://user-images.githubusercontent.com/24237865/95007578-42a01280-064c-11eb-9081-e5567274c9ba.gif" align="right" width="32%"/>
 
 ### Usage
-`Spinner` composable implements a lightweight dropdown popup spinner. Here is an example for creating a spinner using a sting array resource. We should use the String generic type for creating a spinner when we us a string array resource.
+`Spinner` composable implements a lightweight dropdown popup spinner. Here is an example for creating a spinner using a string array resource. We should use the String generic type for creating a spinner when we us a string array resource.
 
 ```kotlin
  val (selectedItem, setSelectedItem) 
