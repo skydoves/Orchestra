@@ -18,60 +18,7 @@
 </p>
 
 ## Balloon
-**Orchestra Balloon** allows you to build modernized and sophisticated tooltips, fully customizable with an arrow and animations for Jetpack Compose. This is a Jetpack Compose compatible package of [Balloon](https://github.com/skydoves/balloon).
-
-### Download
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.skydoves/orchestra-balloon.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.skydoves%22%20AND%20a:%22orchestra-balloon%22)<br>
-
-Add the codes below to your **root** `build.gradle` file (not your module build.gradle file):
-```gradle
-allprojects {
-    repositories {
-        mavenCentral()
-    }
-}
-```
-Next, add the dependency below to your **module**'s `build.gradle` file:
-```gradle
-dependencies {
-    implementation "com.github.skydoves:orchestra-balloon:1.2.0"
-}
-```
-
-<img src="https://user-images.githubusercontent.com/24237865/95007576-3caa3180-064c-11eb-815b-b995f45bb18a.gif" align="right" width="32%"/>
-
-### Usage
-`BalloonAnchor` composable can be used in `ConstraintLayout` and it receives a constraint reference. In the below, `BalloonAnchor` references `image` composable. When clicked the `image` composable, balloon popup will be shown.
-```kotlin
-ConstraintLayout {
-  val (image, title, content, message) = createRefs()
-
-  // image, title, content, message //
-  
-  BalloonAnchor(
-    reference = image,
-    modifier = Modifier.aspectRatio(0.8f),
-    balloon = BalloonUtils.getTitleBalloon(
-      context = context,
-      title = poster.name,
-      lifecycle = lifecycleOwner
-    ),
-    onAnchorClick = { balloon, anchor -> balloon.show(anchor) }
-  )
-```
-Or we can create a `BalloonAnchor` composable using [Balloon.Factory](https://github.com/skydoves/balloon#lazy-initialization).
-```kotlin
-BalloonAnchor(
-  reference = image,
-  modifier = Modifier.aspectRatio(0.8f),
-  factory = MyBalloonFactory::class,
-  onAnchorClick = { balloon, anchor -> balloon.show(anchor) },
-  onBalloonClick = { },
-  onBalloonDismiss = { },
-  onBalloonInitialized = { content -> },
-  onBalloonOutsideTouch = { content, event -> }
-)
-```
+**Orchestra Balloon** was deprecated. Now Balloon supports Jetpack Compose, so please check out [Balloon in Jetpack Compose](https://github.com/skydoves/balloon#balloon-in-jetpack-compose-1).
 
 ## ColorPicker
 **Orchestra ColorPicker** allows you to build color picker for getting colors from any images by tapping on the desired color for Jetpack Compose. This is a Jetpack Compose compatible package of [ColorPickerView](https://github.com/skydoves/colorpickerview).
